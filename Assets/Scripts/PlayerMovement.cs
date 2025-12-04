@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Safety")]
     [SerializeField] private LayerMask safetyMask;
-
+    
     private InputAction _directionInput;
     private Rigidbody _rb;
 
@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour {
     
     private Vector3 _splineForward, _splineRight;
     private float3 _splineNearestPoint;
+    
+    public SplineContainer TrackSpline { set => trackSpline = value; }
 
     private void Awake() {
         _directionInput = InputSystem.actions.FindAction("Direction");
