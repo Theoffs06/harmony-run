@@ -356,7 +356,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2263182456672542116}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 0.7
   m_AngularDrag: 6
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -388,11 +388,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
-  speed: 18
+  speed: 90
   turnStrength: 5
   maxSteerAngle: 45
-  playerSteerRange: 2
-  playerSteerSpeed: 4
+  playerSteerRange: 6
+  playerSteerSpeed: 20
   centerOffset: -1
   laneCorrectionStrength: 3
   wallAvoidDistance: 2
