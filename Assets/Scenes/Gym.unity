@@ -2887,6 +2887,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: playerSteerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: laneCorrectionStrength
       value: 3
       objectReference: {fileID: 0}
@@ -3754,6 +3758,10 @@ PrefabInstance:
     - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: centerOffset
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: playerSteerSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5703288436593157644, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: spline
