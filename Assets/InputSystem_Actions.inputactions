@@ -7,150 +7,57 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "Vertical",
+                    "name": "Direction",
                     "type": "Value",
-                    "id": "baac2bbc-f021-4989-ae15-60a5d2ab27dc",
+                    "id": "072cc4a9-faea-45ad-92f1-f5ad40ee3e4d",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Horizontal",
-                    "type": "Value",
-                    "id": "924c6635-56f2-4c4c-b8ee-d4c0a59fa356",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Forward",
-                    "type": "Value",
-                    "id": "ddefe5b5-7745-43a1-86fc-d0415d15eb87",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Switch",
-                    "type": "Button",
-                    "id": "221a75b3-963b-4e95-917e-d6c947571332",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "b212d064-9ce3-43d0-9219-6cb1c5785f48",
-                    "path": "<Keyboard>/r",
+                    "id": "9b62f1f7-1359-413b-85c3-ba48d507f237",
+                    "path": "<Gamepad>/leftStick/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Switch",
+                    "groups": ";Gamepad",
+                    "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "3edfb035-bc0c-46da-ba0c-975bda494cd1",
+                    "name": "AD [KeyBoard]",
+                    "id": "4fd8de63-5050-4d8c-85a9-dbbf675837d5",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Vertical",
+                    "action": "Direction",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "740636b0-ee10-4963-a3c1-3fdea3d45fe4",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Vertical",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "13050515-4f3f-4d1a-99fb-05d0171e6316",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Vertical",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "d1586e94-2cb4-4959-9d9b-0e43a1f686a7",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Horizontal",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "061aa356-f177-42b2-acbc-976c02741df2",
+                    "id": "abec28c8-67b8-4616-8eb2-d372269960b9",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Horizontal",
+                    "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "77bd1d29-96a6-479e-b922-a540cc46a827",
+                    "id": "05dea820-f7f9-4dc9-a334-441e21774cb5",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Horizontal",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "3f954ed2-29c6-4ca9-b7fc-71456fba187f",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Forward",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "7434f455-c561-4c6c-b216-5cef3fe791b0",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Forward",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "7d8db689-2c97-4612-9818-c3557da5c57e",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Forward",
+                    "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
