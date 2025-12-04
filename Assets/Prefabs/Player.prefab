@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
   speed: 120
-  playerSteerSpeed: 35
+  playerSteerSpeed: 45
   wallAvoidDistance: 2
   wallAvoidStrength: 20
   wallMask:
