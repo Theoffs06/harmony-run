@@ -388,13 +388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
-  speed: 90
-  turnStrength: 5
-  maxSteerAngle: 45
-  playerSteerRange: 6
-  playerSteerSpeed: 20
-  centerOffset: -1
-  laneCorrectionStrength: 3
+  speed: 120
+  playerSteerSpeed: 35
   wallAvoidDistance: 2
   wallAvoidStrength: 20
   wallMask:
