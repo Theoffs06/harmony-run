@@ -421,8 +421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
-  speed: 18
-  playerSteerSpeed: 4
+  speed: 120
+  playerSteerSpeed: 45
   safetyMask:
     serializedVersion: 2
     m_Bits: 8

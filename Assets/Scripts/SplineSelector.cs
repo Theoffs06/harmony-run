@@ -14,7 +14,7 @@ public class SplineSelector : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        var player = GetComponent<PlayerController>();
-        if (player != null) { }
+        // var player = GetComponent<PlayerController>();
+        // if (player != null) { }
     }
 }
