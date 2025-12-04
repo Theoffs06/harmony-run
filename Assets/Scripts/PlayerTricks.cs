@@ -3,33 +3,22 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerTricks : MonoBehaviour {
+    private Animator _animator;
+    private PlayerJump _playerJump;
 
-    [Header("Inputs")]
-    [SerializeField] private InputActionReference lauchTrick;
-
-    private Animator animator;
-    private PlayerJump playerJump;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        playerJump = GetComponent<PlayerJump>();
+    private void Awake() {
+        _animator = GetComponent<Animator>();
+        _playerJump = GetComponent<PlayerJump>();
     }
 
     private void Update() {
-        if (!playerJump.IsGrounded())
-        {
-            if (lauchTrick.action.WasPressedThisFrame())
-            {
-                animator.Play("Kickflip");
-            }
-        }
-        else { 
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Kickflip"))
-            {
-                Debug.Log("Looser");
-            }
+        if (!_playerJump.IsGrounded()) return;
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Kickflip")) {
+            Debug.Log("Looser");
         }
     }
 
+    public void OnTrick(InputAction.CallbackContext obj) {
+        _animator.Play("Kickflip");
+    }
 }

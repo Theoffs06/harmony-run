@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Safety")]
     [SerializeField] private LayerMask safetyMask;
     
-    private InputAction _directionInput;
     private Rigidbody _rb;
 
     private float _input;
@@ -27,14 +26,9 @@ public class PlayerMovement : MonoBehaviour {
     public SplineContainer TrackSpline { set => trackSpline = value; }
 
     private void Awake() {
-        _directionInput = InputSystem.actions.FindAction("Direction");
         _rb = GetComponent<Rigidbody>();
     }
-
-    private void Update() {
-        HandlePlayerInput();
-    }
-
+    
     private void FixedUpdate() {
         SplineUtility.GetNearestPoint(trackSpline.Spline, transform.position, out _splineNearestPoint, out var t);
         _splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(t));
@@ -42,10 +36,7 @@ public class PlayerMovement : MonoBehaviour {
         
         Advance();
     }
-
-    private void OnEnable() => _directionInput.Enable();
-    private void OnDisable() => _directionInput.Disable();
-
+    
     private void OnCollisionEnter(Collision other) { 
         if (other.gameObject.layer == safetyMask) _forceRotation = false;
     }
@@ -53,11 +44,9 @@ public class PlayerMovement : MonoBehaviour {
     private void OnCollisionExit(Collision other) {
         if (other.gameObject.layer == safetyMask) _forceRotation = true;
     }
-
-    private void HandlePlayerInput() {
-        _input = _directionInput.ReadValue<float>();
-    }
-
+    
+    public void OnMove(InputAction.CallbackContext obj) => _input = obj.ReadValue<float>();
+    
     private void Advance() {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
         
