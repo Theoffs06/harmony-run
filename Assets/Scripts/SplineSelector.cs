@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 public class SplineSelector : MonoBehaviour
 {
     [SerializeField]
-    private SplineContainer spline;
+    private SplineContainer trackSplineSelected;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
@@ -14,7 +14,10 @@ public class SplineSelector : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // var player = GetComponent<PlayerController>();
-        // if (player != null) { }
+        var player = other.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            player.TrackSpline = trackSplineSelected;
+        }
     }
 }
