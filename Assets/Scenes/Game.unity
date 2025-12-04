@@ -1559,6 +1559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1692920383}
     m_Modifications:
+    - target: {fileID: 339879625051493312, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: lauchTrick
+      value: 
+      objectReference: {fileID: -723070730820273617, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 834885194739165167, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2406,6 +2410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1692920383}
     m_Modifications:
+    - target: {fileID: 339879625051493312, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: lauchTrick
+      value: 
+      objectReference: {fileID: -723070730820273617, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 2263182456672542116, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: m_Name
       value: Player 1
