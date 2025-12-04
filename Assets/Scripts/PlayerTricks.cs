@@ -19,6 +19,6 @@ public class PlayerTricks : MonoBehaviour {
     }
 
     public void OnTrick(InputAction.CallbackContext obj) {
-        _animator.Play("Kickflip");
+        if (!_playerJump.IsGrounded()) _animator.Play("Kickflip");
     }
 }
