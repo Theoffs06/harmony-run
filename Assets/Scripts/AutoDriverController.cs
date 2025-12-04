@@ -7,17 +7,10 @@ using UnityEngine.Splines;
 public class PlayerController : MonoBehaviour {
     [Header("Spline Driving")]
     [SerializeField] private SplineContainer trackSpline;
-    [SerializeField] private float speed = 18f;
-    [SerializeField] private float turnStrength = 5f;
-    [SerializeField] private float maxSteerAngle = 45f;
+    [SerializeField] private float speed = 30f;
 
     [Header("Player Steering")]
-    [SerializeField] private float playerSteerRange = 2f;
-    [SerializeField] private float playerSteerSpeed = 4f;
-
-    [Header("Lane Keeping")]
-    [SerializeField] private float centerOffset;
-    [SerializeField] private float laneCorrectionStrength = 10f;
+    [SerializeField] private float playerSteerSpeed = 100f;
 
     [Header("Safety")]
     [SerializeField] private float wallAvoidDistance = 2f;
@@ -25,8 +18,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private LayerMask wallMask;
 
     private InputAction _directionInput;
-    private float _desiredOffset;
     private Rigidbody _rb;
+
+    private Vector3 _splineForward, _splineRight;
+    private float3 _splineNearestPoint;
 
     private void Awake() {
         _directionInput = InputSystem.actions.FindAction("Direction");
@@ -38,10 +33,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        ApplyLaneOffset();
-        FollowSpline();
+        SplineUtility.GetNearestPoint(trackSpline.Spline, transform.position, out _splineNearestPoint, out var t);
+        _splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(t));
+        _splineRight = math.normalize(math.cross(new float3(0, 1, 0), _splineForward));
+
+        Advance();
         AvoidWalls();
-        MaintainSpeed();
     }
 
     private void OnEnable() => _directionInput.Enable();
@@ -49,30 +46,15 @@ public class PlayerController : MonoBehaviour {
 
     private void HandlePlayerInput() {
         var input = _directionInput.ReadValue<float>();
-        
-        _desiredOffset += input * playerSteerSpeed * Time.deltaTime;
-        _desiredOffset = math.clamp(_desiredOffset, -playerSteerRange, playerSteerRange);
     }
 
-    private void ApplyLaneOffset() {
-        centerOffset = math.lerp(centerOffset, _desiredOffset, Time.deltaTime * playerSteerSpeed);
+    private void Advance()
+    {
+        _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
+        _rb.linearVelocity = Vector3.Lerp(_rb.linearVelocity , _splineForward * speed + _splineRight* _directionInput.ReadValue<float>() * playerSteerSpeed, 0.5f);
     }
 
-    private void FollowSpline() {
-        SplineUtility.GetNearestPoint(trackSpline.Spline, transform.position, out var nearestPos, out var t);
-        var splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(t));
-        var splineRight = math.normalize(math.cross(new float3(0, 1, 0), splineForward));
-        
-        var angleDiff = SignedAngle(transform.forward, splineForward, new float3(0, 1, 0));
-        var steer = math.clamp(angleDiff * turnStrength, -maxSteerAngle, maxSteerAngle);
-        _rb.MoveRotation(Quaternion.Euler(0, transform.eulerAngles.y + steer * Time.fixedDeltaTime, 0));
-
-        var offsetPos = nearestPos + splineRight * centerOffset;
-        var toTarget = offsetPos - (float3) transform.position;
-        _rb.AddForce(toTarget * laneCorrectionStrength, ForceMode.Acceleration);
-    }
-
-    private void AvoidWalls() {
+    private void AvoidWalls() { // Obsolete
         var left = transform.position - transform.right * 0.5f;
         var right = transform.position + transform.right * 0.5f;
 
@@ -80,12 +62,11 @@ public class PlayerController : MonoBehaviour {
         if (Physics.Raycast(right, transform.right, wallAvoidDistance, wallMask)) _rb.AddForce(-transform.right * wallAvoidStrength, ForceMode.Acceleration);
     }
 
-    private void MaintainSpeed() {
-        var horizSpeed = math.length(new float3(_rb.linearVelocity.x, 0, _rb.linearVelocity.z));
-        if (horizSpeed < speed) _rb.AddForce(transform.forward * 20f, ForceMode.Acceleration);
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, _splineForward);
+        Gizmos.DrawLine(transform.position, _splineNearestPoint);
     }
-    
-    private static float SignedAngle(float3 from, float3 to, float3 axis) {
-        return math.degrees(math.atan2(math.dot( math.cross(from, to), axis), math.dot(from, to)));
-    }
+
 }
