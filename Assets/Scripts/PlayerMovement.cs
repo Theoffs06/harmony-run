@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Events Moteur passive")]
     [SerializeField] private EventReference moteurEvent;
+    [Header("Events Wind")]
+    [SerializeField] private EventReference windEvent;
     
     private PlayerJump _playerJump;
     private Rigidbody _rb;
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour {
     private float3 _splineNearestPoint;
 
     private EventInstance _moteurInstance;
+    private EventInstance _windInstance;
     
     public SplineContainer TrackSpline { set => trackSpline = value; }
 
@@ -50,11 +53,14 @@ public class PlayerMovement : MonoBehaviour {
         _rb = GetComponent<Rigidbody>();
         _playerJump = GetComponent<PlayerJump>();
         _moteurInstance = RuntimeManager.CreateInstance(moteurEvent);
+        _windInstance = RuntimeManager.CreateInstance(windEvent);
     }
 
     private void Start() {
         _moteurInstance.start();
+        _windInstance.start();
         RuntimeManager.AttachInstanceToGameObject(_moteurInstance, gameObject, _rb);
+        RuntimeManager.AttachInstanceToGameObject(_windInstance, gameObject, _rb);
     }
     
     private void FixedUpdate() {
@@ -93,7 +99,9 @@ public class PlayerMovement : MonoBehaviour {
         if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
-        RuntimeManager.StudioSystem.setParameterByName("Speed", actualSpeed*100/speed);
+
+        _moteurInstance.setParameterByName("Speed", actualSpeed*100/speed);
+        _windInstance.setParameterByName("Speed", actualSpeed*100/speed);
     }
     
     private void OnDrawGizmos() {
