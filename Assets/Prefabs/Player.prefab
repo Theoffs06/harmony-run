@@ -598,6 +598,7 @@ MonoBehaviour:
   trackSpline: {fileID: 0}
   speed: 120
   playerSteerSpeed: 45
+  maxSteerLength: 10
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
@@ -671,3 +672,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d6e228990a04644b8e79928d1c4b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSync: {fileID: 0}

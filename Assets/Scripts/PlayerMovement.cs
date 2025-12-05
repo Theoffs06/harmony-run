@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Player Steering")]
     [SerializeField] private float playerSteerSpeed = 100f;
+    [SerializeField] private float maxSteerLength;
 
     [Header("Safety")]
     [SerializeField] private LayerMask safetyMask;
@@ -47,6 +48,8 @@ public class PlayerMovement : MonoBehaviour {
     
     private Vector3 _splineForward, _splineRight;
     private float3 _splineNearestPoint;
+    private Vector3 _rightMaxSteerPoint;
+    private Vector3 _leftMaxSteerPoint;
 
     private EventInstance _moteurInstance;
     private EventInstance _windInstance;
@@ -71,10 +74,17 @@ public class PlayerMovement : MonoBehaviour {
     
     private void FixedUpdate() {
         SplineUtility.GetNearestPoint(trackSpline.Spline, transform.position, out _splineNearestPoint, out var t);
+        _rightMaxSteerPoint = (Vector3)_splineNearestPoint + _splineRight * maxSteerLength;
+        _leftMaxSteerPoint = _rightMaxSteerPoint +  -2 * maxSteerLength * _splineRight;
         _splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(t));
         _splineRight = math.normalize(math.cross(new float3(0, 1, 0), _splineForward));
         
         Advance();
+
+        if(Vector3.Distance(_splineNearestPoint, transform.position) >= maxSteerLength * 5)
+        {
+            transform.position = _splineNearestPoint;
+        }
     }
     
     private void OnCollisionEnter(Collision other) { 
@@ -120,7 +130,16 @@ public class PlayerMovement : MonoBehaviour {
         }
         
         var verticalVelocity = _rb.linearVelocity.y;
-        var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_directionInput * playerSteerSpeed);
+        var steerVelocity = _directionInput * playerSteerSpeed;
+        if (Vector3.Distance(_leftMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity > 0)
+        {
+            steerVelocity = 0;
+        } else if (Vector3.Distance(_rightMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity < 0)
+        {
+            steerVelocity = 0;
+        }
+        
+        var horizontalVelocity = _splineForward * actualSpeed + _splineRight * steerVelocity;
         
         if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
@@ -132,8 +151,10 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     private void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(_rightMaxSteerPoint, _leftMaxSteerPoint);
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, _splineForward);
         Gizmos.DrawLine(transform.position, _splineNearestPoint);
-    }
+    } 
 }
