@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour {
@@ -22,6 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("UI")]
     [SerializeField] private Slider boostUI;
+
+    [Header("Events Moteur passive")]
+    [SerializeField] private EventReference moteurEvent;
     
     private Rigidbody _rb;
 
@@ -31,11 +36,19 @@ public class PlayerMovement : MonoBehaviour {
     
     private Vector3 _splineForward, _splineRight;
     private float3 _splineNearestPoint;
+
+    private EventInstance _moteurInstance;
     
     public SplineContainer TrackSpline { set => trackSpline = value; }
 
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _moteurInstance = RuntimeManager.CreateInstance(moteurEvent);
+    }
+
+    private void Start() {
+        _moteurInstance.start();
+        RuntimeManager.AttachInstanceToGameObject(_moteurInstance, gameObject, _rb);
     }
     
     private void FixedUpdate() {
@@ -69,6 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         var verticalVelocity = _rb.linearVelocity.y;
         var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_input * playerSteerSpeed);
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
+        RuntimeManager.StudioSystem.setParameterByName("Speed", actualSpeed*100/speed);
     }
     
     private void OnDrawGizmos() {

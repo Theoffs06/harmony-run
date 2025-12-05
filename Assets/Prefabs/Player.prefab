@@ -585,10 +585,16 @@ MonoBehaviour:
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
-  boostInput: {fileID: 0}
   boostSpeedMultiplier: 2
   boostConsumptionRate: 0.01
   boostUI: {fileID: 0}
+  moteurEvent:
+    Guid:
+      Data1: 171644183
+      Data2: 1298232756
+      Data3: -1429691491
+      Data4: 175323113
+    Path: event:/Environnement/Engine_Passive
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +613,13 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 72
+  jumpEvent:
+    Guid:
+      Data1: 120683928
+      Data2: 1223486672
+      Data3: -1695595084
+      Data4: -434327912
+    Path: event:/Action/Jump
 --- !u!114 &339879625051493312
 MonoBehaviour:
   m_ObjectHideFlags: 0

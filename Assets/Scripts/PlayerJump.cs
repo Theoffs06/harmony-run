@@ -1,12 +1,17 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlayerJump : MonoBehaviour {
     [SerializeField] private float jumpHeight = 10;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.4f;
     [SerializeField] private LayerMask groundMask;
+
+    [Header("Events Jump")]
+    [SerializeField] private EventReference jumpEvent;
     
     private Rigidbody _rb;
     
@@ -27,6 +32,7 @@ public class PlayerJump : MonoBehaviour {
     public void Jump() {
         var jumpVelocity = math.sqrt(2 * Physics.gravity.magnitude * jumpHeight);
         _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.VelocityChange);
+        RuntimeManager.PlayOneShotAttached(jumpEvent, gameObject);
     }
     
     public bool IsGrounded() => Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask);
