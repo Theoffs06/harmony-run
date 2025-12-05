@@ -546,6 +546,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3db7de15-36e7-45bf-b560-1ddc70b737b5
+    m_ActionName: 'Player/Boost[/XInputControllerWindows/rightTrigger,/Keyboard/w]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -569,6 +573,10 @@ MonoBehaviour:
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
+  boostInput: {fileID: -7716505343131424941, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  boostSpeedMultiplier: 2
+  boostConsumptionRate: 0.01
+  boostUI: {fileID: 0}
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
