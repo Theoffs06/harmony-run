@@ -9,8 +9,12 @@ public class DynamicSplitScreen : MonoBehaviour {
     [SerializeField] private Camera playerCam2;
     [SerializeField] private GameObject splitVerticalImage;
     [SerializeField] private GameObject splitHorizontalImage;
-    
+
+    [SerializeField] private GameObject playerListener1;
+    [SerializeField] private GameObject playerListener2;
+
     [SerializeField] private float splitDistance = 10f;
+    [SerializeField] private float listenerDistance = 2f;
     
     private bool _isSplit;
     
@@ -63,8 +67,16 @@ public class DynamicSplitScreen : MonoBehaviour {
         splitHorizontalImage.SetActive(!horizontalSplit);
         
         if (horizontalSplit) {
-            if (player1.position.x < player2.position.x) SetRects(Left, Right);
-            else SetRects(Right, Left);
+            if (player1.position.x < player2.position.x) {
+                playerListener1.transform.localPosition = Vector3.right * listenerDistance;
+                playerListener2.transform.localPosition = Vector3.left * listenerDistance;
+                SetRects(Left, Right);
+            }
+            else {
+                playerListener1.transform.localPosition = Vector3.left * listenerDistance;
+                playerListener2.transform.localPosition = Vector3.right * listenerDistance;
+                SetRects(Right, Left);
+            }
         }
         else {
             if (player1.position.y > player2.position.y) SetRects(Top, Bottom);

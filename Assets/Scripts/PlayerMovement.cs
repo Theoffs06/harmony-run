@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private EventReference moteurEvent;
     [Header("Events Wind")]
     [SerializeField] private EventReference windEvent;
+    [Header("Mute Sound")]
+    [SerializeField] private bool muteSound = false;
     
     private PlayerJump _playerJump;
     private Rigidbody _rb;
@@ -57,10 +59,12 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Start() {
+        if (!muteSound) {
         _moteurInstance.start();
         _windInstance.start();
         RuntimeManager.AttachInstanceToGameObject(_moteurInstance, gameObject, _rb);
         RuntimeManager.AttachInstanceToGameObject(_windInstance, gameObject, _rb);
+        }
     }
     
     private void FixedUpdate() {
@@ -100,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
 
+        if (!_moteurInstance.isValid() || !_windInstance.isValid()) return;
         _moteurInstance.setParameterByName("Speed", actualSpeed*100/speed);
         _windInstance.setParameterByName("Speed", actualSpeed*100/speed);
     }
