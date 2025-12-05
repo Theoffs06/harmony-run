@@ -24,6 +24,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Pack01:
+        m_Texture: {fileID: 2800000, guid: 15a7cc478557ed84a88e0a9de77604c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Pack02:
+        m_Texture: {fileID: 2800000, guid: 0db22866d4caddc46935f2d88811f003, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_95b5de9021bf4779aea9e9bfc92a00d7_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 4a9434d8ea4d7724a9062dded5f2c5ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,7 +53,22 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.03402631, g: 0.3056603, b: 0.11958242, a: 0}
+    - _Base_Color: {r: 0.5698112, g: 0.5698112, b: 0.5698112, a: 0}
+    - _BigLines: {r: 0.79622644, g: 0.47883037, b: 0.19680312, a: 0}
+    - _Color: {r: 0.24228546, g: 0.5793959, b: 0.7509433, a: 0}
+    - _Color_1: {r: 0.83396226, g: 0.086543165, b: 0.7000959, a: 0}
+    - _Color_2: {r: 1, g: 0, b: 0, a: 0}
+    - _Color_3: {r: 0.9445681, g: 0.97735846, b: 0.07191872, a: 0}
+    - _Color_4: {r: 0.8867924, g: 0.7126882, b: 0.14556777, a: 0}
+    - _Color_5: {r: 0.20580004, g: 0.93207544, b: 0.0052758222, a: 0}
+    - _LinesGlass_Color: {r: 0.1434318, g: 0.18036094, b: 0.19245279, a: 0}
+    - _Lines_Color: {r: 0.94716984, g: 0.04825197, b: 0.88371694, a: 0}
+    - _PharesArrBig: {r: 0.79622644, g: 0.088636465, b: 0.088636465, a: 0}
+    - _PharesAvBig: {r: 0, g: 0, b: 0, a: 0}
+    - _PharesSmall: {r: 0, g: 0, b: 0, a: 0}
+    - _SmallLines_Color: {r: 0.14571926, g: 1, b: 0, a: 0}
+    - _WheelLines_Color: {r: 0.11698109, g: 0.11698109, b: 0.11698109, a: 0}
+    - _Wheel_EmissiveColor: {r: 1.683019, g: 0.2000569, b: 0.2000569, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4151594622208446887
