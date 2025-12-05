@@ -2972,7 +2972,7 @@ PrefabInstance:
       objectReference: {fileID: 1115303366}
     - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: muteSound
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2531812426206779747, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: boostInput
