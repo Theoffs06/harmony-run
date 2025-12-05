@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float brakeStrength = 20f;
 
     [Header("UI")]
-    [SerializeField] private Slider boostUI;
+    [SerializeField] public Slider boostUI;
 
     [Header("Events Moteur passive")]
     [SerializeField] private EventReference moteurEvent;
