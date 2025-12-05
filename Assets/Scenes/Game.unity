@@ -1919,6 +1919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692920383}
+  - component: {fileID: 1692920384}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Untagged
@@ -1944,6 +1945,22 @@ Transform:
   - {fileID: 1864605367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1692920384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692920382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2418d1198550884dba8bd814ef2d04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTrickScore: 100
+  proximityScoreMultiplier: 1
+  maxTimingMultiplierTrigger: 1
+  tricksTimingScoreMultiplier: 1
 --- !u!4 &1743930710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132260311005428686, guid: b00894ae02852d44380319c516374416, type: 3}
@@ -1997,6 +2014,10 @@ PrefabInstance:
       propertyPath: lauchTrick
       value: 
       objectReference: {fileID: -723070730820273617, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 339879625051493312, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: playerSync
+      value: 
+      objectReference: {fileID: 1692920384}
     - target: {fileID: 834885194739165167, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2958,6 +2979,10 @@ PrefabInstance:
       propertyPath: lauchTrick
       value: 
       objectReference: {fileID: -723070730820273617, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 339879625051493312, guid: b00894ae02852d44380319c516374416, type: 3}
+      propertyPath: playerSync
+      value: 
+      objectReference: {fileID: 1692920384}
     - target: {fileID: 2263182456672542116, guid: b00894ae02852d44380319c516374416, type: 3}
       propertyPath: m_Name
       value: Player 1
