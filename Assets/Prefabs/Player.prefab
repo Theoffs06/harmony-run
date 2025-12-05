@@ -603,7 +603,7 @@ MonoBehaviour:
     m_Bits: 8
   boostSpeedMultiplier: 2
   boostConsumptionRate: 0.01
-  brakeStrength: 47
+  brakeStrength: 100
   boostUI: {fileID: 0}
   moteurEvent:
     Guid:
@@ -612,6 +612,13 @@ MonoBehaviour:
       Data3: -1429691491
       Data4: 175323113
     Path: event:/Environnement/Engine_Passive
+  windEvent:
+    Guid:
+      Data1: -965150360
+      Data2: 1128580441
+      Data3: -2103695948
+      Data4: -1192770006
+    Path: event:/Ambiance/Wind_Passive
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
