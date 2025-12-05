@@ -22,18 +22,17 @@ public class PlayerSyncActions : MonoBehaviour {
             _player2LastTrickTime = Time.time;
             _player2MadeATrick = true;
         }
+
+        if (!_player1MadeATrick || !_player2MadeATrick) return points;
+        var tricksTimingDifference = Mathf.Abs(_player1LastTrickTime - _player2LastTrickTime);
         
-        if (_player1MadeATrick && _player2MadeATrick) {
-            var tricksTimingDifference = Mathf.Abs(_player1LastTrickTime - _player2LastTrickTime);
+        _player1MadeATrick = false;
+        _player2MadeATrick = false;
             
-            _player1MadeATrick = false;
-            _player2MadeATrick = false;
-            
-            if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger) {
-                points = (int)(points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
-            }
+        if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger) {
+            points = (int)(points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
         }
-        
+
         return points;
     }
 }

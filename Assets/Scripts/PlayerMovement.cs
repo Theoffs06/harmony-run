@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour {
         if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
-        speedUI.UpdateSpeed(actualSpeed, speed * boostSpeedMultiplier);
+        speedUI.UpdateSpeed(_brakeInput ? 0 : actualSpeed,speed * boostSpeedMultiplier);
         
         if (!_moteurInstance.isValid() || !_windInstance.isValid()) return;
         _moteurInstance.setParameterByName("Speed", actualSpeed * 100 / speed);

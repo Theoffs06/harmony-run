@@ -4,19 +4,22 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerTricks : MonoBehaviour {
-    [SerializeField] private PlayerSyncActions playerSync;
+    private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+    
     [SerializeField] private UIScore uiScore;
     
-    private Animator _animator;
+    private Animator _animator; 
+    private PlayerSyncActions _playerSync;
     private PlayerJump _playerJump;
 
     private void Awake() {
         _animator = GetComponent<Animator>();
+        _playerSync = GetComponentInParent<PlayerSyncActions>();
         _playerJump = GetComponent<PlayerJump>();
     }
 
     private void Update() {
-        _animator.SetBool("IsGrounded", _playerJump.IsGrounded());
+        _animator.SetBool(IsGrounded, _playerJump.IsGrounded());
     }
 
     public void OnTrick(InputAction.CallbackContext obj) {
@@ -30,6 +33,6 @@ public class PlayerTricks : MonoBehaviour {
 
     public void SuceedTrick() {
         var playerId = gameObject.name == "Player 1" ? 0 : 1;
-        uiScore.IncreaseScore(playerSync.SucedTricks(playerId));
+        uiScore.IncreaseScore(_playerSync.SucedTricks(playerId));
     }
 }
