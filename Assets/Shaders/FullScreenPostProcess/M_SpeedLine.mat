@@ -41,7 +41,7 @@ Material:
     - _Line_Count: 50
     - _Line_Fallof: 0.45
     - _Mask_Vignet_Flow: 0.89
-    - _Mask_Vignet_Mask: -0.2
+    - _Mask_Vignet_Mask: 0.02
     - _speed: 0.66
     m_Colors:
     - _Center_effect: {r: 0.5, g: 0.5, b: 0, a: 0}

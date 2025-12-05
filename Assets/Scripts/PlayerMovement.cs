@@ -28,10 +28,12 @@ public class PlayerMovement : MonoBehaviour {
     [Header("UI")]
     [SerializeField] public Slider boostUI;
 
-    [Header("Events Moteur passive")]
+    [Header("Events Fmod")]
     [SerializeField] private EventReference moteurEvent;
-    [Header("Events Wind")]
     [SerializeField] private EventReference windEvent;
+    [SerializeField] private EventReference boostStartEvent;
+    [SerializeField] private EventReference boostEndEvent;
+
     [Header("Mute Sound")]
     [SerializeField] private bool muteSound = false;
     
@@ -84,7 +86,27 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     public void OnMove(InputAction.CallbackContext obj) => _directionInput = obj.ReadValue<float>();
-    public void OnBoost(InputAction.CallbackContext obj) =>_boostInput = obj.performed;
+    public void OnBoost(InputAction.CallbackContext obj) {
+        if (obj.performed) {
+            _boostInput = true;
+            if (!muteSound)
+            {
+               RuntimeManager.PlayOneShotAttached(boostStartEvent, gameObject); 
+               _windInstance.setParameterByName("Boost", 1f);
+               _moteurInstance.setParameterByName("Boost", 1f);
+            }
+            
+        }
+        else if (obj.canceled) {
+            _boostInput = false;
+            if (!muteSound) 
+            {
+            RuntimeManager.PlayOneShotAttached(boostEndEvent, gameObject);
+            _windInstance.setParameterByName("Boost", 0f);
+            _moteurInstance.setParameterByName("Boost", 0f);
+            }
+        }
+    }
 
     public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>() <= -1f;
     

@@ -64,7 +64,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Noise2_Scale: 0.2
-    - _Noise2_Strength: 0.75
+    - _Noise2_Strength: 0.625
     - _Outline_Scale: 11.63
     - _QueueControl: 0
     - _QueueOffset: 0
