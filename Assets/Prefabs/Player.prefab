@@ -603,7 +603,7 @@ MonoBehaviour:
     m_Bits: 8
   boostSpeedMultiplier: 2
   boostConsumptionRate: 0.01
-  brakeStrength: 47
+  brakeStrength: 100
   boostUI: {fileID: 0}
   moteurEvent:
     Guid:

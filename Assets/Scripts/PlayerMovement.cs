@@ -31,10 +31,11 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Events Moteur passive")]
     [SerializeField] private EventReference moteurEvent;
     
+    private PlayerJump _playerJump;
     private Rigidbody _rb;
 
     private float _directionInput;
-    private float _brakeInput;
+    private bool _brakeInput;
     private bool _boostInput;
     private bool _forceRotation = true;
     
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _playerJump = GetComponent<PlayerJump>();
         _moteurInstance = RuntimeManager.CreateInstance(moteurEvent);
     }
 
@@ -73,7 +75,8 @@ public class PlayerMovement : MonoBehaviour {
     
     public void OnMove(InputAction.CallbackContext obj) => _directionInput = obj.ReadValue<float>();
     public void OnBoost(InputAction.CallbackContext obj) =>_boostInput = obj.performed;
-    public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>();
+
+    public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>() <= -1f;
     
     private void Advance() {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
@@ -87,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         var verticalVelocity = _rb.linearVelocity.y;
         var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_directionInput * playerSteerSpeed);
         
-        if (_brakeInput > 0f) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, _brakeInput * brakeStrength * Time.fixedDeltaTime);
+        if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
         RuntimeManager.StudioSystem.setParameterByName("Speed", actualSpeed*100/speed);
