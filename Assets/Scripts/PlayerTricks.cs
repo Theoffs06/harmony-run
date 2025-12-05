@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 public class PlayerTricks : MonoBehaviour {
 
+    [SerializeField] private PlayerSyncActions playerSync;
+
     private Animator _animator;
     private PlayerJump _playerJump;
     private PlayerMovement _playerMovement;
@@ -30,7 +32,12 @@ public class PlayerTricks : MonoBehaviour {
 
     public void SuceedTrick()
     {
-        _playerMovement.boostUI.value += 0.2f;
+        var playerId = 1;
+        if(gameObject.name == "Player 1")
+        {
+            playerId = 0;
+        }
+        Debug.Log("Congrats! your score = " + playerSync.SuceedTricks(playerId));
     }
 
 }
