@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Boost")]
     [SerializeField] private float boostSpeedMultiplier = 2.0f;
     [SerializeField] private float boostConsumptionRate = 0.01f;
+    
+    [Header("Brake")]
+    [SerializeField] private float brakeStrength = 20f;
 
     [Header("UI")]
     [SerializeField] private Slider boostUI;
@@ -30,7 +33,8 @@ public class PlayerMovement : MonoBehaviour {
     
     private Rigidbody _rb;
 
-    private float _input;
+    private float _directionInput;
+    private float _brakeInput;
     private bool _boostInput;
     private bool _forceRotation = true;
     
@@ -67,8 +71,9 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.layer == safetyMask) _forceRotation = true;
     }
     
-    public void OnMove(InputAction.CallbackContext obj) => _input = obj.ReadValue<float>();
+    public void OnMove(InputAction.CallbackContext obj) => _directionInput = obj.ReadValue<float>();
     public void OnBoost(InputAction.CallbackContext obj) =>_boostInput = obj.performed;
+    public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>();
     
     private void Advance() {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
@@ -80,7 +85,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         
         var verticalVelocity = _rb.linearVelocity.y;
-        var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_input * playerSteerSpeed);
+        var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_directionInput * playerSteerSpeed);
+        
+        if (_brakeInput > 0f) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, _brakeInput * brakeStrength * Time.fixedDeltaTime);
+        
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
         RuntimeManager.StudioSystem.setParameterByName("Speed", actualSpeed*100/speed);
     }
