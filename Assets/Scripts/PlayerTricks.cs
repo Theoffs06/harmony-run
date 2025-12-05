@@ -1,19 +1,18 @@
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerTricks : MonoBehaviour {
-
     [SerializeField] private PlayerSyncActions playerSync;
-
+    [SerializeField] private UIScore uiScore;
+    
     private Animator _animator;
     private PlayerJump _playerJump;
-    private PlayerMovement _playerMovement;
 
     private void Awake() {
         _animator = GetComponent<Animator>();
         _playerJump = GetComponent<PlayerJump>();
-        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update() {
@@ -25,19 +24,12 @@ public class PlayerTricks : MonoBehaviour {
         _animator.Play("Kickflip");
     }
 
-    public void FailedTrick()
-    {
-        Debug.Log("You Failed!");
+    public void FailedTrick() {
+        uiScore.ResetScore();
     }
 
-    public void SuceedTrick()
-    {
-        var playerId = 1;
-        if(gameObject.name == "Player 1")
-        {
-            playerId = 0;
-        }
-        Debug.Log("Congrats! your score = " + playerSync.SuceedTricks(playerId));
+    public void SuceedTrick() {
+        var playerId = gameObject.name == "Player 1" ? 0 : 1;
+        uiScore.IncreaseScore(playerSync.SucedTricks(playerId));
     }
-
 }

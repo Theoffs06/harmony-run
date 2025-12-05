@@ -2,9 +2,9 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
-using UnityEngine.UI;
 using FMODUnity;
 using FMOD.Studio;
+using UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour {
@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float brakeStrength = 20f;
 
     [Header("UI")]
-    [SerializeField] public Slider boostUI;
+    [SerializeField] private UIBoostBar boostUI;
+    [SerializeField] private UISpeedBar speedUI;
 
     [Header("Events Fmod")]
     [SerializeField] private EventReference moteurEvent;
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private EventReference boostEndEvent;
 
     [Header("Mute Sound")]
-    [SerializeField] private bool muteSound = false;
+    [SerializeField] private bool muteSound;
     
     private PlayerJump _playerJump;
     private Rigidbody _rb;
@@ -64,12 +65,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Start() {
-        if (!muteSound) {
+        if (muteSound) return;
         _moteurInstance.start();
         _windInstance.start();
         RuntimeManager.AttachInstanceToGameObject(_moteurInstance, gameObject, _rb);
         RuntimeManager.AttachInstanceToGameObject(_windInstance, gameObject, _rb);
-        }
     }
     
     private void FixedUpdate() {
@@ -80,9 +80,7 @@ public class PlayerMovement : MonoBehaviour {
         _splineRight = math.normalize(math.cross(new float3(0, 1, 0), _splineForward));
         
         Advance();
-
-        if(Vector3.Distance(_splineNearestPoint, transform.position) >= maxSteerLength * 5)
-        {
+        if(Vector3.Distance(_splineNearestPoint, transform.position) >= maxSteerLength * 5) {
             transform.position = _splineNearestPoint;
         }
     }
@@ -99,22 +97,20 @@ public class PlayerMovement : MonoBehaviour {
     public void OnBoost(InputAction.CallbackContext obj) {
         if (obj.performed) {
             _boostInput = true;
-            if (!muteSound)
-            {
-               RuntimeManager.PlayOneShotAttached(boostStartEvent, gameObject); 
-               _windInstance.setParameterByName("Boost", 1f);
-               _moteurInstance.setParameterByName("Boost", 1f);
-            }
             
+            if (muteSound) return;
+            RuntimeManager.PlayOneShotAttached(boostStartEvent, gameObject); 
+            _windInstance.setParameterByName("Boost", 1f);
+            _moteurInstance.setParameterByName("Boost", 1f);
+
         }
         else if (obj.canceled) {
             _boostInput = false;
-            if (!muteSound) 
-            {
+            
+            if (muteSound) return;
             RuntimeManager.PlayOneShotAttached(boostEndEvent, gameObject);
             _windInstance.setParameterByName("Boost", 0f);
             _moteurInstance.setParameterByName("Boost", 0f);
-            }
         }
     }
 
@@ -124,30 +120,27 @@ public class PlayerMovement : MonoBehaviour {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
         
         var actualSpeed = speed;
-        if(_boostInput && boostUI.value > 0f) {
+        if(_boostInput && boostUI.CurrentBoost > 0f) {
             actualSpeed = speed * boostSpeedMultiplier;
-            boostUI.value -= Time.fixedDeltaTime * boostConsumptionRate;
+            boostUI.DecreaseBoost(Time.fixedDeltaTime * boostConsumptionRate);
         }
         
         var verticalVelocity = _rb.linearVelocity.y;
         var steerVelocity = _directionInput * playerSteerSpeed;
-        if (Vector3.Distance(_leftMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity > 0)
-        {
-            steerVelocity = 0;
-        } else if (Vector3.Distance(_rightMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity < 0)
-        {
+        if (Vector3.Distance(_leftMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity > 0 || Vector3.Distance(_rightMaxSteerPoint, transform.position) >= maxSteerLength * 2 && steerVelocity < 0) {
             steerVelocity = 0;
         }
-        
+
         var horizontalVelocity = _splineForward * actualSpeed + _splineRight * steerVelocity;
         
         if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
-
+        speedUI.UpdateSpeed(actualSpeed, speed * boostSpeedMultiplier);
+        
         if (!_moteurInstance.isValid() || !_windInstance.isValid()) return;
-        _moteurInstance.setParameterByName("Speed", actualSpeed*100/speed);
-        _windInstance.setParameterByName("Speed", actualSpeed*100/speed);
+        _moteurInstance.setParameterByName("Speed", actualSpeed * 100 / speed);
+        _windInstance.setParameterByName("Speed", actualSpeed * 100 / speed);
     }
     
     private void OnDrawGizmos() {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5613545818744557244}
   - component: {fileID: 2506929565053515961}
   - component: {fileID: 5652346886929649431}
+  - component: {fileID: 4962449967160109626}
   m_Layer: 0
   m_Name: TopBar_Fill
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4962449967160109626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779584354443766514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1290941f304b3583fbf33d8c455525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBoost: 100
 --- !u!1 &2826221861475930145
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +175,7 @@ GameObject:
   - component: {fileID: 7017824947552061286}
   - component: {fileID: 6017439275101731235}
   - component: {fileID: 5935552512764276885}
+  - component: {fileID: 5109544883575962354}
   m_Layer: 0
   m_Name: TimeValue
   m_TagString: Untagged
@@ -185,7 +200,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -121.999985}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6017439275101731235
 CanvasRenderer:
@@ -288,6 +303,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5109544883575962354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8463953424037847746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d66490044d43dc91ab07c89eda0f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9121141944208985042
 GameObject:
   m_ObjectHideFlags: 0
