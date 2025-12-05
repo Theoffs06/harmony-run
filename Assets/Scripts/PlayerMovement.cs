@@ -26,15 +26,20 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float brakeStrength = 20f;
 
     [Header("UI")]
-    [SerializeField] private Slider boostUI;
+    [SerializeField] public Slider boostUI;
 
     [Header("Events Moteur passive")]
     [SerializeField] private EventReference moteurEvent;
+    [Header("Events Wind")]
+    [SerializeField] private EventReference windEvent;
+    [Header("Mute Sound")]
+    [SerializeField] private bool muteSound = false;
     
+    private PlayerJump _playerJump;
     private Rigidbody _rb;
 
     private float _directionInput;
-    private float _brakeInput;
+    private bool _brakeInput;
     private bool _boostInput;
     private bool _forceRotation = true;
     
@@ -42,17 +47,24 @@ public class PlayerMovement : MonoBehaviour {
     private float3 _splineNearestPoint;
 
     private EventInstance _moteurInstance;
+    private EventInstance _windInstance;
     
     public SplineContainer TrackSpline { set => trackSpline = value; }
 
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _playerJump = GetComponent<PlayerJump>();
         _moteurInstance = RuntimeManager.CreateInstance(moteurEvent);
+        _windInstance = RuntimeManager.CreateInstance(windEvent);
     }
 
     private void Start() {
+        if (!muteSound) {
         _moteurInstance.start();
+        _windInstance.start();
         RuntimeManager.AttachInstanceToGameObject(_moteurInstance, gameObject, _rb);
+        RuntimeManager.AttachInstanceToGameObject(_windInstance, gameObject, _rb);
+        }
     }
     
     private void FixedUpdate() {
@@ -73,7 +85,8 @@ public class PlayerMovement : MonoBehaviour {
     
     public void OnMove(InputAction.CallbackContext obj) => _directionInput = obj.ReadValue<float>();
     public void OnBoost(InputAction.CallbackContext obj) =>_boostInput = obj.performed;
-    public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>();
+
+    public void OnBrake(InputAction.CallbackContext obj) => _brakeInput = obj.ReadValue<float>() <= -1f;
     
     private void Advance() {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
@@ -87,10 +100,13 @@ public class PlayerMovement : MonoBehaviour {
         var verticalVelocity = _rb.linearVelocity.y;
         var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_directionInput * playerSteerSpeed);
         
-        if (_brakeInput > 0f) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, _brakeInput * brakeStrength * Time.fixedDeltaTime);
+        if (_brakeInput && !_boostInput && _playerJump.IsGrounded()) horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, brakeStrength * Time.fixedDeltaTime);
         
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
-        RuntimeManager.StudioSystem.setParameterByName("Speed", actualSpeed*100/speed);
+
+        if (!_moteurInstance.isValid() || !_windInstance.isValid()) return;
+        _moteurInstance.setParameterByName("Speed", actualSpeed*100/speed);
+        _windInstance.setParameterByName("Speed", actualSpeed*100/speed);
     }
     
     private void OnDrawGizmos() {

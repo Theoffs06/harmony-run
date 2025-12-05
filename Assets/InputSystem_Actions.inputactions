@@ -165,8 +165,8 @@
                 },
                 {
                     "name": "",
-                    "id": "e6c7f1db-b281-4e00-b51b-1ab60ec50192",
-                    "path": "<Keyboard>/w",
+                    "id": "11549642-427a-40ee-b504-212dca2650d2",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -175,15 +175,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "242e80d0-0769-41a2-9d0e-973d01591955",
+                    "name": "1D Axis",
+                    "id": "6712d1f3-a0c0-46ed-82c5-5e04cf98ae13",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f1298e20-d9f4-464b-af68-57001e3b53a1",
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Brake",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3e5ee40f-bcce-4769-abbd-32ca4755b45a",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
