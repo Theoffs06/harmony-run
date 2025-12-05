@@ -1,15 +1,20 @@
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class JumpTrigger : MonoBehaviour
 {
+    private PlayerJump playerJump;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     private void OnTriggerExit(Collider other)
     {
         {
-            var player_jump = other.GetComponent<PlayerJump>();
-            if (player_jump != null)
+            playerJump = other.GetComponent<PlayerJump>();
+            if (playerJump != null)
             {
-                player_jump.Jump();
+                playerJump.Jump();
             }
         }
     }
