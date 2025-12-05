@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using FMODUnity;
 
 public class PlayerJump : MonoBehaviour {
-    public event Action OnJumped;
+    public event Action<PlayerJump> OnJumped;
     
     [SerializeField] private float jumpHeight = 10;
     [SerializeField] private Transform groundCheck;
@@ -28,7 +28,7 @@ public class PlayerJump : MonoBehaviour {
     
     public void OnJump(InputAction.CallbackContext obj) {
         if (!IsGrounded() || !obj.performed) return;
-        OnJumped?.Invoke();
+        OnJumped?.Invoke(this);
         Jump();
     }
 
