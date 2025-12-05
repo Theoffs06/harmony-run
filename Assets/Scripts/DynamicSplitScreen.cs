@@ -12,6 +12,8 @@ public class DynamicSplitScreen : MonoBehaviour {
     
     [SerializeField] private float splitDistance = 10f;
     
+    private bool _isSplit;
+    
     private static readonly Rect Left = new(0, 0, 0.5f, 1);
     private static readonly Rect Right = new(0.5f, 0, 0.5f, 1);
     private static readonly Rect Top = new(0, 0.5f, 1, 0.5f);
@@ -22,9 +24,20 @@ public class DynamicSplitScreen : MonoBehaviour {
     }
 
     private void Update() {
-        if (Vector3.Distance(player1.position, player2.position) > splitDistance) SetSplitCameras();
-        else SetSingleCamera();
+        var shouldSplit = Vector3.Distance(player1.position, player2.position) > splitDistance;
+
+        switch (shouldSplit) {
+            case true when !_isSplit:
+                SetSplitCameras();
+                _isSplit = true;
+                break;
+            case false when _isSplit:
+                SetSingleCamera();
+                _isSplit = false;
+                break;
+        }
     }
+
 
     private void SetSingleCamera() {
         singleCam.gameObject.SetActive(true);

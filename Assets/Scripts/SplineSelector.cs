@@ -1,22 +1,11 @@
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class SplineSelector : MonoBehaviour
-{
-    [SerializeField]
-    private SplineContainer trackSplineSelected;
+public class SplineSelector : MonoBehaviour {
+    [SerializeField] private SplineContainer trackSplineSelected;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
-
-    // Update is called once per frame
-    void Update() { }
-
-    void OnTriggerEnter(Collider other)
-    {
-        var player = other.GetComponent<PlayerMovement>();
-        if (player != null)
-        {
+    private void OnTriggerEnter(Collider other) {
+        if (other.TryGetComponent<PlayerMovement>(out var player)) {
             player.TrackSpline = trackSplineSelected;
         }
     }

@@ -2,6 +2,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour {
@@ -15,9 +16,17 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Safety")]
     [SerializeField] private LayerMask safetyMask;
     
+    [Header("Boost")]
+    [SerializeField] private float boostSpeedMultiplier = 2.0f;
+    [SerializeField] private float boostConsumptionRate = 0.01f;
+
+    [Header("UI")]
+    [SerializeField] private Slider boostUI;
+    
     private Rigidbody _rb;
 
     private float _input;
+    private bool _boostInput;
     private bool _forceRotation = true;
     
     private Vector3 _splineForward, _splineRight;
@@ -46,12 +55,19 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     public void OnMove(InputAction.CallbackContext obj) => _input = obj.ReadValue<float>();
+    public void OnBoost(InputAction.CallbackContext obj) =>_boostInput = obj.performed;
     
     private void Advance() {
         if (_forceRotation) _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
         
+        var actualSpeed = speed;
+        if(_boostInput && boostUI.value > 0f) {
+            actualSpeed = speed * boostSpeedMultiplier;
+            boostUI.value -= Time.fixedDeltaTime * boostConsumptionRate;
+        }
+        
         var verticalVelocity = _rb.linearVelocity.y;
-        var horizontalVelocity = _splineForward * speed + _splineRight * (_input * playerSteerSpeed);
+        var horizontalVelocity = _splineForward * actualSpeed + _splineRight * (_input * playerSteerSpeed);
         _rb.linearVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
     

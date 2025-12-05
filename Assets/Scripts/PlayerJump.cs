@@ -20,7 +20,7 @@ public class PlayerJump : MonoBehaviour {
     }
     
     public void OnJump(InputAction.CallbackContext obj) {
-        if (!IsGrounded()) return;
+        if (!IsGrounded() || !obj.performed) return;
         var jumpVelocity = math.sqrt(2 * Physics.gravity.magnitude * jumpHeight);
         _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.VelocityChange);
     }

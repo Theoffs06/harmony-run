@@ -2,8 +2,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
     public static AudioManager Instance;
 
     // Événements FMOD que l'on souhaite garder actifs entre les scènes
@@ -11,14 +10,12 @@ public class AudioManager : MonoBehaviour
     public EventReference musicEvent;
     public EventReference ambienceEvent;
 
-    private EventInstance musicInstance;
-    private EventInstance ambienceInstance;
+    private EventInstance _musicInstance;
+    private EventInstance _ambienceInstance;
 
     // Init gameobject persistant entre les scènes
-    private void Awake()
-    {
-        if (Instance != null)
-        {
+    private void Awake() {
+        if (Instance) {
             Destroy(gameObject);
             return;
         }
@@ -30,15 +27,14 @@ public class AudioManager : MonoBehaviour
     }
 
     // Lance les événements FMOD persistants
-    private void InitPersistentEvents()
-    {
+    private void InitPersistentEvents() {
         // Musique
-        musicInstance = RuntimeManager.CreateInstance(musicEvent);
-        musicInstance.start();
+        _musicInstance = RuntimeManager.CreateInstance(musicEvent);
+        _musicInstance.start();
 
         // Ambiance
-        ambienceInstance = RuntimeManager.CreateInstance(ambienceEvent);
-        ambienceInstance.start();
+        _ambienceInstance = RuntimeManager.CreateInstance(ambienceEvent);
+        _ambienceInstance.start();
     }
 }
 
