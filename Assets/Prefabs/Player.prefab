@@ -619,6 +619,21 @@ MonoBehaviour:
       Data3: -2103695948
       Data4: -1192770006
     Path: event:/Ambiance/Wind_Passive
+  boostStartEvent:
+    Guid:
+      Data1: 1874613397
+      Data2: 1139092216
+      Data3: -69567323
+      Data4: 390920237
+    Path: event:/Action/Boost_Start
+  boostEndEvent:
+    Guid:
+      Data1: -1679815604
+      Data2: 1105315410
+      Data3: 1327401863
+      Data4: -811559434
+    Path: event:/Action/Boost_End
+  muteSound: 0
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
