@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5160940425663839242}
   - component: {fileID: 1490631187710876146}
   - component: {fileID: 6898875541738866705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8008552982681965082}
   - component: {fileID: 9104370694395602137}
   - component: {fileID: 1820244339075213349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArrowR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5333436231131399898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6329425828699971713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6597858422297695721}
   - component: {fileID: 725491271983271645}
   - component: {fileID: 834885194739165167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArrowL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 2531812426206779747}
   - component: {fileID: 5558225601504644657}
   - component: {fileID: 339879625051493312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,14 +597,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
   speed: 120
-  playerSteerSpeed: 45
+  playerSteerSpeed: 20
   maxSteerLength: 10
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
   boostSpeedMultiplier: 2
   boostConsumptionRate: 0.01
-  brakeStrength: 100
+  brakeStrength: 50
   boostUI: {fileID: 0}
   moteurEvent:
     Guid:
