@@ -602,7 +602,7 @@ MonoBehaviour:
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
-  boostSpeedMultiplier: 2
+  boostSpeedMultiplier: 1.4
   boostConsumptionRate: 0.01
   brakeStrength: 50
   boostUI: {fileID: 0}
