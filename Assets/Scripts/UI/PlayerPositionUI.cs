@@ -35,6 +35,7 @@ public class PlayerPositionUI : MonoBehaviour
                 playerCamNumber == 1 ? cameraManager.PlayerCam1 : cameraManager.PlayerCam2;
             UpdatePositionFromCameraSplited(cameraToCheck);
 
+            // the point is not visible if the player is behind the camera
             bool isVisible =
                 Vector3.Dot(
                     cameraToCheck.transform.forward,
@@ -48,8 +49,6 @@ public class PlayerPositionUI : MonoBehaviour
     private void UpdatePositionFromCameraSingle(Camera camera)
     {
         Vector2 playerScreenPosition = camera.WorldToScreenPoint(playerToFollow.position);
-        Debug.Log("width :" + camera.pixelWidth);
-        Debug.Log("position " + playerToFollow.name + " : " + playerScreenPosition);
 
         float xPosition = Mathf.Clamp(
             playerScreenPosition.x - camera.pixelWidth / 2 + offset.x,
@@ -68,15 +67,11 @@ public class PlayerPositionUI : MonoBehaviour
     private void UpdatePositionFromCameraSplited(Camera camera)
     {
         Vector2 playerScreenPosition = camera.WorldToScreenPoint(playerToFollow.position);
-        Debug.Log("width :" + camera.pixelWidth);
-        Debug.Log("position " + playerToFollow.name + " : " + playerScreenPosition);
 
         var camRect = camera.rect;
         bool isLeft = camRect.x <= 0.01f;
 
         float sign = isLeft ? -1 : 0.5f;
-
-        Debug.Log("left ? => " + isLeft);
 
         float xPosition = Mathf.Clamp(
             playerScreenPosition.x - camera.pixelWidth / 2 + offset.x,
@@ -104,8 +99,5 @@ public class PlayerPositionUI : MonoBehaviour
 
         rectTransform.localPosition =
             new Vector2(xPosition, yPosition) + sign * Vector2.right * camera.pixelWidth / 2;
-
-        // rectTransform.localPosition =
-        //     new Vector2(xPosition, yPosition) + sign * Vector2.right * camera.pixelWidth / 4;
     }
 }
