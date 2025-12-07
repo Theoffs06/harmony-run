@@ -1,34 +1,30 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class JumpTrigger : MonoBehaviour
-{
-    private List<PlayerJump> playersJump = new();
+public class JumpTrigger : MonoBehaviour {
+    private readonly List<PlayerJump> _players = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    private void OnTriggerEnter(Collider other)
-    {
-        var playerEntering = other.GetComponent<PlayerJump>();
-        playersJump.Add(playerEntering);
+    private void OnTriggerEnter(Collider other) {
+        if (!other.TryGetComponent<PlayerJump>(out var playerEntering)) return;
+        
+        _players.Add(playerEntering);
         playerEntering.OnJumped += AutoJumpOnPlayerJump;
     }
-
-    private void AutoJumpOnPlayerJump(PlayerJump player)
-    {
-        player.Jump();
-        playersJump.Remove(player);
-        player.OnJumped -= AutoJumpOnPlayerJump;
+    
+    private void OnTriggerExit(Collider other) {
+        if (!other.TryGetComponent<PlayerJump>(out var playerExiting)) return;
+        if (!_players.Contains(playerExiting)) return;
+        playerExiting.Jump();
+            
+        playerExiting.OnJumped -= AutoJumpOnPlayerJump;
+        _players.Remove(playerExiting);
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        var playerExiting = other.GetComponent<PlayerJump>();
-        if (playersJump.Contains(playerExiting))
-        {
-            playerExiting.Jump();
-            playersJump.Remove(playerExiting);
-            playerExiting.OnJumped -= AutoJumpOnPlayerJump;
-        }
+    
+    private void AutoJumpOnPlayerJump(PlayerJump player) {
+        player.Jump();
+        
+        player.OnJumped -= AutoJumpOnPlayerJump;
+        _players.Remove(player);
     }
 }

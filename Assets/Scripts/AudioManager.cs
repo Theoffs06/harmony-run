@@ -3,7 +3,7 @@ using FMODUnity;
 using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour {
-    public static AudioManager Instance;
+    private static AudioManager Instance;
 
     // Événements FMOD que l'on souhaite garder actifs entre les scènes
     [Header("Events permanents entre scènes")]

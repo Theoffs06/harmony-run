@@ -12,7 +12,7 @@ public class PlayerSyncActions : MonoBehaviour {
     private bool _player1MadeATrick;
     private bool _player2MadeATrick;
 
-    public int SucedTricks(int player) {
+    public int SucceedTricks(int player) {
         var points = baseTrickScore;
         
         if (player == 0) {
