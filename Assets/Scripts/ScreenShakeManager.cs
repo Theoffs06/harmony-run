@@ -34,7 +34,7 @@ public class ScreenShakeManager : MonoBehaviour
     {
         float playerSpeed = playerMovement.GetComponent<Rigidbody>().linearVelocity.magnitude;
         float shakeFactor = math.clamp(math.remap(SpeedMin, SpeedMax, 0f, 1f, playerSpeed), 0f, 1f);
-        Debug.Log("velocity => " + playerSpeed + " // shake factor => " + shakeFactor);
+
         float targetShakeAmplitude = Mathf.Lerp(AmplitudeMin, AmplitudeMax, shakeFactor);
         cameraShakePerlin.AmplitudeGain = Mathf.Lerp(
             cameraShakePerlin.AmplitudeGain,

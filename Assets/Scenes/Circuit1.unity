@@ -4441,9 +4441,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8069622778405197184, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2086530806}
+    - targetCorrespondingSourceObject: {fileID: 8069622778405197184, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086530808}
     - targetCorrespondingSourceObject: {fileID: 5387105552733398380, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1547657160}
+    - targetCorrespondingSourceObject: {fileID: 5387105552733398380, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1547657161}
   m_SourcePrefab: {fileID: 100100000, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
 --- !u!4 &1039588438 stripped
 Transform:
@@ -6050,7 +6056,26 @@ MonoBehaviour:
   playerMovement: {fileID: 1355553408}
   playerGround: {fileID: 1547657151}
   carTransform: {fileID: 1803320049}
-  maxTiltAngle: 30
+  maxTiltAngle: 35
+  delayFactor: 0.15
+--- !u!114 &1547657161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547657148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f51b9b53184bcb42866b3a98c2f4572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1355553408}
+  speedLinesMaterial: {fileID: 2100000, guid: 9aa25619d94532945af0685ad38c4902, type: 2}
+  MinSpeed: 60
+  MaxSpeed: 100
+  minEffectDensity: 0
+  maxEffectDensity: 0.8
   delayFactor: 0.2
 --- !u!1001 &1564248571
 PrefabInstance:
@@ -7414,6 +7439,25 @@ MonoBehaviour:
   carTransform: {fileID: 1314719045}
   maxTiltAngle: 30
   delayFactor: 0.5
+--- !u!114 &2086530808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809780505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f51b9b53184bcb42866b3a98c2f4572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2086530794}
+  speedLinesMaterial: {fileID: 2100000, guid: 2d215af2c412a2c48a6d11be35394ef6, type: 2}
+  MinSpeed: 60
+  MaxSpeed: 100
+  minEffectDensity: 0
+  maxEffectDensity: 0.8
+  delayFactor: 0.2
 --- !u!1 &2099085299
 GameObject:
   m_ObjectHideFlags: 0

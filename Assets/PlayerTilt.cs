@@ -37,8 +37,6 @@ public class PlayerTilt : MonoBehaviour
 
         Vector3 carRight = math.normalize(math.cross(new float3(0, 1, 0), carTransform.right));
 
-        Debug.DrawRay(carTransform.position, carRight * 5f, Color.yellow);
-
         float playerHorizontalSpeed = Vector3.Dot(playerVelocity, carRight);
         float playerHorizontalSpeedAbs = Mathf.Abs(playerHorizontalSpeed);
 
@@ -58,17 +56,6 @@ public class PlayerTilt : MonoBehaviour
                 -Mathf.Sign(playerHorizontalSpeed) * Mathf.Lerp(0f, maxTiltAngle, tiltFactorAbs);
 
             float actualTilt = carTransform.localRotation.x;
-
-            Debug.Log(
-                "horizontal velocity => "
-                    + playerHorizontalSpeedAbs
-                    + " // tilt factor => "
-                    + tiltFactorAbs
-                    + " // actual tilt =>   "
-                    + tilt
-                    + " // tilt target => "
-                    + tiltTarget
-            );
 
             tilt = Mathf.Lerp(tilt, tiltTarget, delayFactor);
 
