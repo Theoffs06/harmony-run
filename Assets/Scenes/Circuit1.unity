@@ -3926,11 +3926,11 @@ PrefabInstance:
       objectReference: {fileID: 1039588439}
     - target: {fileID: 7143220229704180797, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.465966
+      value: 13.300908
       objectReference: {fileID: 0}
     - target: {fileID: 7143220229704180797, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 78.211655
+      value: 76.961655
       objectReference: {fileID: 0}
     - target: {fileID: 7143220229704180797, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3946,11 +3946,11 @@ PrefabInstance:
       objectReference: {fileID: 1039588438}
     - target: {fileID: 8691141944445152743, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.465966
+      value: 13.300908
       objectReference: {fileID: 0}
     - target: {fileID: 8691141944445152743, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 78.211655
+      value: 76.961655
       objectReference: {fileID: 0}
     - target: {fileID: 8691141944445152743, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4365,11 +4365,11 @@ PrefabInstance:
       objectReference: {fileID: 443106031}
     - target: {fileID: 5900268834427444593, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.50003
+      value: -50.00004
       objectReference: {fileID: 0}
     - target: {fileID: 5900268834427444593, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.00003
+      value: -50.00004
       objectReference: {fileID: 0}
     - target: {fileID: 5900268834427444593, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -4394,6 +4394,10 @@ PrefabInstance:
     - target: {fileID: 6032486631789515079, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: playerSteerSpeed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8069622778405197184, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368253163223161828, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: uiScore
@@ -4434,6 +4438,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1576628028920537454, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1169624024}
+    - targetCorrespondingSourceObject: {fileID: 8069622778405197184, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2086530806}
+    - targetCorrespondingSourceObject: {fileID: 5387105552733398380, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1547657160}
   m_SourcePrefab: {fileID: 100100000, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
 --- !u!4 &1039588438 stripped
 Transform:
@@ -5116,6 +5126,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2741803444973873827, guid: 16aff3b7eb5766448aa1c6633e375578, type: 3}
   m_PrefabInstance: {fileID: 1224630615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1314719045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8624580786692632175, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+  m_PrefabInstance: {fileID: 1039588437}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1355553408 stripped
 MonoBehaviour:
@@ -6009,6 +6024,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5387105552733398380, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
   m_PrefabInstance: {fileID: 1039588437}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1547657151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8182745482220140336, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+  m_PrefabInstance: {fileID: 1039588437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547657148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1133d53992f543869823bfb6f6e11d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1547657160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547657148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e3bbd801ae03a4fa68705db749566d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1355553408}
+  playerGround: {fileID: 1547657151}
+  carTransform: {fileID: 1803320049}
+  maxTiltAngle: 30
+  delayFactor: 0.2
 --- !u!1001 &1564248571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6523,6 +6566,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2741803444973873827, guid: 16aff3b7eb5766448aa1c6633e375578, type: 3}
   m_PrefabInstance: {fileID: 1709282002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1803320049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5949099368005131907, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+  m_PrefabInstance: {fileID: 1039588437}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1809780505 stripped
 GameObject:
@@ -7338,6 +7386,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d92d255086a86429f0dc5aacde0788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2086530797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6102706754647394268, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+  m_PrefabInstance: {fileID: 1039588437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809780505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1133d53992f543869823bfb6f6e11d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2086530806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809780505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e3bbd801ae03a4fa68705db749566d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2086530794}
+  playerGround: {fileID: 2086530797}
+  carTransform: {fileID: 1314719045}
+  maxTiltAngle: 30
+  delayFactor: 0.5
 --- !u!1 &2099085299
 GameObject:
   m_ObjectHideFlags: 0
