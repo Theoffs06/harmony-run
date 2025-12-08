@@ -30,8 +30,6 @@ namespace Player {
         private Rigidbody _rb;
         private ProximitySpeedBoost _proximitySpeedBoost;
         
-        private UISpeedBar _speedUI;
-        
         private bool _forceRotation = true;
     
         private float3 _splineForward, _splineRight;
@@ -41,12 +39,11 @@ namespace Player {
         
         public SplineContainer TrackSpline { set => trackSpline = value; }
 
-        public void OnCreate(Rigidbody rb, PlayerBoost boost, PlayerGround jump, PlayerAudio audioManager, UISpeedBar speedBar) {
+        public void OnCreate(Rigidbody rb, PlayerBoost boost, PlayerGround jump, PlayerAudio audioManager) {
             _rb = rb;
             _boost = boost;
             _ground = jump;
             _audio = audioManager;
-            _speedUI = speedBar;
             _proximitySpeedBoost = GetComponent<ProximitySpeedBoost>();
         }
         
@@ -88,9 +85,7 @@ namespace Player {
             var currentVel = _rb.linearVelocity;
             _rb.linearVelocity = new Vector3(horizontalVelocity.x, currentVel.y, horizontalVelocity.z);
             if(math.distance(_splineNearestPoint, transform.position) >= maxSteerLength * 5) transform.position = _splineNearestPoint;
-            
-            _speedUI.UpdateSpeed(brakeInput ? 0 : actualSpeed,speed * boostSpeedMultiplier * (2 * proximityBoostMultiplier));
-            _audio.SetSpeed(brakeInput ? 0 : actualSpeed * 100 / speed);
+            _audio.SetSpeed(brakeInput ? 0 : actualSpeed * 100 / speed * boostSpeedMultiplier * (2 * proximityBoostMultiplier));
         }
         
         private float GetEffectiveSpeed() {
