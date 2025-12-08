@@ -148,8 +148,8 @@ MonoBehaviour:
   m_CustomAttributes:
   - {fileID: 8926484042661614550}
   m_ParameterInfo:
-  - name: Pos1
-    path: Pos1
+  - name: Player01
+    path: Player01
     tooltip: 
     space: -1
     spaceable: 0
@@ -196,8 +196,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Pos4
-    path: Pos4
+  - name: Player02
+    path: Player02
     tooltip: 
     space: -1
     spaceable: 0
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614616}
-  m_ExposedName: Pos1
+  m_ExposedName: Player01
   m_Exposed: 1
   m_Order: 0
   m_Category: 
@@ -3410,7 +3410,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614631}
-  m_ExposedName: Pos4
+  m_ExposedName: Player02
   m_Exposed: 1
   m_Order: 3
   m_Category: 

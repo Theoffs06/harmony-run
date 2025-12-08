@@ -2,26 +2,33 @@ using UnityEngine;
 
 public class PlayerInitColors : MonoBehaviour
 {
-    [SerializeField] Material _carMaterial;
+    Material _carMaterial;
     Material _instCarMat;
-    [SerializeField] Material _neonMaterial;
+    Material _neonMaterial;
     Material _instNeonTrailMat;
     private Renderer rend;
 
-    [SerializeField] Color _playerMainColor = Color.red;
-    [SerializeField] Color _playerNeonColor = Color.red;
-    [SerializeField] float _playerNeonInt = 1;
+    [SerializeField] Color _playerMainColor = Color.green;
+    [SerializeField] Color _playerNeonColor = Color.green;
+    [SerializeField] float _playerNeonInt = 3;
 
-    [SerializeField] Color _trailNeonColor = Color.red;
-    [SerializeField] float _trailNeonInt = 1;
+    [SerializeField] Color _trailNeonColor = Color.green;
+    [SerializeField] float _trailNeonInt = 3;
 
-    [SerializeField] TrailRenderer _trailRendererL;
-    [SerializeField] TrailRenderer _trailRendererR;
+    TrailRenderer _trailRendererL;
+    TrailRenderer _trailRendererR;
 
 
     void Start()
     {
         rend = GetComponent<Renderer>();
+        _carMaterial = this.GetComponent<Renderer>().material;
+
+        Transform _neonCont = transform.Find("NeonTrails");
+        _trailRendererL = _neonCont.Find("NeonTrail_L").GetComponent<TrailRenderer>();
+        _trailRendererR = _neonCont.Find("NeonTrail_R").GetComponent<TrailRenderer>();
+        _neonMaterial = _neonCont.Find("NeonTrail_L").GetComponent<TrailRenderer>().material;
+
         _instCarMat = Instantiate(_carMaterial);
         
         ApplyColor(_playerMainColor, _instCarMat, "_CentralLines_Color");
@@ -49,3 +56,4 @@ public class PlayerInitColors : MonoBehaviour
         _matName.SetColor(_PropertyName, _baseColor);
     }
 }
+
