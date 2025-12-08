@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 5558225601504644657}
   - component: {fileID: 339879625051493312}
   - component: {fileID: 2604299016019660792}
+  - component: {fileID: 149746352901738348}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -620,7 +621,6 @@ MonoBehaviour:
     m_Bits: 8
   boostSpeedMultiplier: 1.4
   brakeStrength: 50
-  speedUI: {fileID: 0}
 --- !u!114 &4015718791812035246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostConsumptionRate: 0.01
-  boostUI: {fileID: 0}
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d6e228990a04644b8e79928d1c4b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiScore: {fileID: 0}
 --- !u!114 &2604299016019660792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,3 +724,15 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 72
+--- !u!114 &149746352901738348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263182456672542116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813675594aef4564f81721a9eb6aa19c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -30,7 +30,7 @@ namespace UI {
         
         public void IncreaseBoost(float value) {
             CurrentBoost += value;
-            math.clamp(CurrentBoost, 0, 1);
+            CurrentBoost = math.clamp(CurrentBoost, 0, 1);
             
             _material.SetFloat(FillValue, CurrentBoost);
         }
