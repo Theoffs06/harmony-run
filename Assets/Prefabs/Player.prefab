@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5160940425663839242}
   - component: {fileID: 1490631187710876146}
   - component: {fileID: 6898875541738866705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8008552982681965082}
   - component: {fileID: 9104370694395602137}
   - component: {fileID: 1820244339075213349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArrowR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5333436231131399898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6329425828699971713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6597858422297695721}
   - component: {fileID: 725491271983271645}
   - component: {fileID: 834885194739165167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArrowL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,12 +336,16 @@ GameObject:
   - component: {fileID: 719522193091329516}
   - component: {fileID: 6471446150982496418}
   - component: {fileID: 4711585116873861589}
+  - component: {fileID: 2272646649366271531}
   - component: {fileID: 2531812426206779747}
+  - component: {fileID: 4015718791812035246}
+  - component: {fileID: 4886937930493641376}
   - component: {fileID: 5558225601504644657}
   - component: {fileID: 339879625051493312}
-  m_Layer: 0
+  - component: {fileID: 2604299016019660792}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,8 +464,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2531812426206779747}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 2272646649366271531}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -476,8 +480,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Direction[/XInputControllerWindows/leftStick/x,/XInputControllerWindows1/leftStick/x,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5558225601504644657}
-        m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
+      - m_Target: {fileID: 2272646649366271531}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -492,8 +496,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth,/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 339879625051493312}
-        m_TargetAssemblyTypeName: PlayerTricks, Assembly-CSharp
+      - m_Target: {fileID: 2272646649366271531}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
         m_MethodName: OnTrick
         m_Mode: 0
         m_Arguments:
@@ -548,8 +552,8 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2531812426206779747}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 2272646649366271531}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
         m_MethodName: OnBoost
         m_Mode: 0
         m_Arguments:
@@ -562,11 +566,39 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3db7de15-36e7-45bf-b560-1ddc70b737b5
     m_ActionName: 'Player/Boost[/XInputControllerWindows/rightTrigger,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2272646649366271531}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnBrake
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4ca76681-faab-4a31-b86a-fef6b64d5d37
+    m_ActionName: 'Player/Brake[/Keyboard/w,/XInputControllerWindows/leftStick/down]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2272646649366271531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263182456672542116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c843ed8f1c84502990aabd68ecb9112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2531812426206779747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,12 +613,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackSpline: {fileID: 0}
   speed: 120
-  playerSteerSpeed: 45
+  playerSteerSpeed: 20
+  maxSteerLength: 10
   safetyMask:
     serializedVersion: 2
     m_Bits: 8
-  boostInput: {fileID: 0}
-  boostSpeedMultiplier: 2
+  boostSpeedMultiplier: 1.4
+  brakeStrength: 50
+  speedUI: {fileID: 0}
+--- !u!114 &4015718791812035246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263182456672542116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca935860325c439ebf34c18c38b07f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorEvent:
+    Guid:
+      Data1: 171644183
+      Data2: 1298232756
+      Data3: -1429691491
+      Data4: 175323113
+    Path: event:/Environnement/Engine_Passive
+  windEvent:
+    Guid:
+      Data1: -965150360
+      Data2: 1128580441
+      Data3: -2103695948
+      Data4: -1192770006
+    Path: event:/Ambiance/Wind_Passive
+  boostStartEvent:
+    Guid:
+      Data1: 1874613397
+      Data2: 1139092216
+      Data3: -69567323
+      Data4: 390920237
+    Path: event:/Action/Boost_Start
+  boostEndEvent:
+    Guid:
+      Data1: -1679815604
+      Data2: 1105315410
+      Data3: 1327401863
+      Data4: -811559434
+    Path: event:/Action/Boost_End
+  jumpEvent:
+    Guid:
+      Data1: 120683928
+      Data2: 1223486672
+      Data3: -1695595084
+      Data4: -434327912
+    Path: event:/Action/Jump
+  muteSound: 0
+--- !u!114 &4886937930493641376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263182456672542116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217d2b6d48194bb28d18d92d5a611781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   boostConsumptionRate: 0.01
   boostUI: {fileID: 0}
 --- !u!114 &5558225601504644657
@@ -602,11 +696,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 5
-  groundCheck: {fileID: 6329425828699971713}
-  groundCheckRadius: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 72
 --- !u!114 &339879625051493312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,3 +708,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d6e228990a04644b8e79928d1c4b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiScore: {fileID: 0}
+--- !u!114 &2604299016019660792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263182456672542116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1133d53992f543869823bfb6f6e11d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 6329425828699971713}
+  groundCheckRadius: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 72
