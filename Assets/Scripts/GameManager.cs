@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Player;
+using TMPro;
 using Triggers;
 using UI;
 using UnityEngine;
@@ -23,11 +25,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private UITurns turnsUI;
 
     [SerializeField] private GameObject hud;
+    [SerializeField] private TMP_Text startTxt;
     
     private bool _isGameOver;
     private int _playersArrived;
 
     private void Awake() {
+        _isGameOver = true;
         Chronometer.Reset();
         
         boostBarUI.OnCreate();
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour {
         cameraManager.OnCreate(player1.transform, player2.transform);
         player1UI.OnCreate(player1.transform, cameraManager);
         player2UI.OnCreate(player2.transform, cameraManager);
+        
+        StartCoroutine(StartGame());
     }
 
     private void Start() {
@@ -50,6 +56,9 @@ public class GameManager : MonoBehaviour {
     }
     
     private void Update() {
+        player1UI.OnUpdate();
+        player2UI.OnUpdate();
+        
         if (_isGameOver) return;
         if (Chronometer.Seconds >= 180) OnGameOver();
         Chronometer.Update(Time.deltaTime);
@@ -58,10 +67,7 @@ public class GameManager : MonoBehaviour {
         chronometerUI.OnUpdate();
         
         player1.OnUpdate();
-        player1UI.OnUpdate();
-        
         player2.OnUpdate();
-        player2UI.OnUpdate();
     }
     
     private void FixedUpdate() {
@@ -79,6 +85,46 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("Leaderboard");
     }
 
+    private IEnumerator StartGame() {
+        for (var i = 3; i >= 1; i--) {
+            startTxt.SetText(i.ToString());
+            yield return PlayPopAndWait(1.5f);
+        }
+        
+        startTxt.SetText("GO!");
+        yield return PlayPopAndWait(1.75f);
+        
+        _isGameOver = false;
+        startTxt.gameObject.SetActive(false);
+    }
+    
+    private IEnumerator PlayPopAndWait(float duration) {
+        var popScale = Vector3.one * 1.6f;
+        
+        if (startTxt.transform && popScale != Vector3.one) {
+            var initial = startTxt.transform.localScale;
+            const float half = 0.18f;
+            
+            var t = 0f;
+            while (t < half) {
+                t += Time.unscaledDeltaTime;
+                startTxt.transform.localScale = Vector3.Lerp(initial, popScale, t / half);
+                yield return null;
+            }
+            
+            t = 0f;
+            while (t < half) {
+                t += Time.unscaledDeltaTime;
+                startTxt.transform.localScale = Vector3.Lerp(popScale, initial, t / half);
+                yield return null;
+            }
+            
+            startTxt.transform.localScale = initial;
+        }
+        
+        yield return new WaitForSecondsRealtime(duration - 0.18f * 2f >= 0f ? duration - 0.18f * 2f : 0f);
+    }
+    
     private static string GenerateRandomLetters(int length) {
         var random = new System.Random();
         
