@@ -19,6 +19,7 @@ namespace Player {
         
         [Header("Boost")]
         [SerializeField] private float boostSpeedMultiplier = 2.0f;
+        [SerializeField] private float proximityBoostMultiplier = 1.0f;
         
         [Header("Brake")]
         [SerializeField] private float brakeStrength = 20f;
@@ -27,6 +28,7 @@ namespace Player {
         private PlayerBoost _boost;
         private PlayerGround _ground;
         private Rigidbody _rb;
+        private ProximitySpeedBoost _proximitySpeedBoost;
         
         private UISpeedBar _speedUI;
         
@@ -45,6 +47,7 @@ namespace Player {
             _ground = jump;
             _audio = audioManager;
             _speedUI = speedBar;
+            _proximitySpeedBoost = GetComponent<ProximitySpeedBoost>();
         }
         
         public void OnFixedUpdate() {
@@ -94,7 +97,7 @@ namespace Player {
             var current = speed;
             
             if (_boost && _boost.TryConsumeBoost()) current *= boostSpeedMultiplier;
-            
+            current *= _proximitySpeedBoost.ProximityMultiplier() * proximityBoostMultiplier;
             return current;
         }
     
@@ -106,5 +109,6 @@ namespace Player {
             Gizmos.DrawRay(transform.position, _splineForward);
             Gizmos.DrawLine(transform.position, _splineNearestPoint);
         }
+
     }
 }

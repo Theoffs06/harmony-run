@@ -10,6 +10,7 @@ namespace Player {
         private PlayerJump _jump;
         private PlayerTricks _tricks;
         private PlayerAudio _audio;
+        private ScoreConverterTrigger _scoreConverterTrigger;
         
         private float _directionInput;
         private bool _brakeInput;
@@ -32,6 +33,9 @@ namespace Player {
             
             _movement = GetComponent<PlayerMovement>();
             _movement.OnCreate(rb, _boost, _ground, _audio, speedBarUI);
+
+            _scoreConverterTrigger = GetComponent<ScoreConverterTrigger>();
+            _scoreConverterTrigger.OnCreate();
         }
 
         public void OnStart() {

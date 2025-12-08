@@ -21,17 +21,19 @@ public class GameManager : MonoBehaviour {
     
     [SerializeField] private UIBoostBar boostBarUI;
     [SerializeField] private UIChronometer chronometerUI;
+    [SerializeField] private UITurns turnsUI;
     
     private bool _isGameOver;
 
     private void Awake() {
-        endTrigger.OnCreate(this);
-        
         boostBarUI.OnCreate();
         chronometerUI.OnCreate();
+        turnsUI.OnCreate();
         
         player1SpeedUI.OnCreate();
         player2SpeedUI.OnCreate();
+        
+        endTrigger.OnCreate(this, turnsUI);
         
         player1.OnCreate(boostBarUI, player1SpeedUI, player1ScoreUI);
         player2.OnCreate(boostBarUI, player2SpeedUI, player2ScoreUI);

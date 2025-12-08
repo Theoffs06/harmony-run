@@ -5,7 +5,6 @@ namespace Player {
     public class PlayerSyncActions : MonoBehaviour {
         [Header("Score Multiplier")]
         [SerializeField] private int baseTrickScore;
-        [SerializeField] private float proximityScoreMultiplier;
         [SerializeField] private float maxTimingMultiplierTrigger;
         [SerializeField] private float tricksTimingScoreMultiplier;
 
