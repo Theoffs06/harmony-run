@@ -25,7 +25,6 @@ public class FOVManager : MonoBehaviour
     {
         float playerSpeed = playerMovement.GetComponent<Rigidbody>().linearVelocity.magnitude;
         float FOVFactor = math.clamp(math.remap(60f, 120f, 0f, 1f, playerSpeed), 0f, 1f);
-        Debug.Log("velocity => " + playerSpeed + " // factor => " + FOVFactor);
         float targetFOV = Mathf.Lerp(FOVMinSpeed, FOVMaxSpeed, FOVFactor);
         camera.Lens.FieldOfView = Mathf.Lerp(camera.Lens.FieldOfView, targetFOV, 0.1f);
     }

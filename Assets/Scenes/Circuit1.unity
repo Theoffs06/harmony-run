@@ -1073,13 +1073,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApplyAfter: 2
-  ChannelMask: 1
+  ChannelMask: 2
   Gain: 1
   Use2DDistance: 0
   UseCameraSpace: 1
   SignalCombinationMode: 0
   ReactionSettings:
-    m_SecondaryNoise: {fileID: 0}
+    m_SecondaryNoise: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
     AmplitudeGain: 1
     FrequencyGain: 1
     Duration: 1
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImpulseDefinition:
-    ImpulseChannel: 1
+    ImpulseChannel: 2
     ImpulseShape: 2
     CustomImpulseShape:
       serializedVersion: 2
@@ -1148,6 +1148,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &235375569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235375560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &235375570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235375560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6282170622e8c4998973d6805ccbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2086530794}
+  cameraShakePerlin: {fileID: 235375569}
+  AmplitudeMin: 0.1
+  AmplitudeMax: 3
+  SpeedMin: 80
+  SpeedMax: 120
+  delayFactor: 0.3
 --- !u!1001 &249970262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2929,17 +2965,135 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 60, y: 50, z: 10}
   m_Center: {x: 5.5, y: 0, z: -0.5}
+--- !u!1 &774817384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+  m_PrefabInstance: {fileID: 965860241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &774817387 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6787711554713569811, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
   m_PrefabInstance: {fileID: 965860241}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 774817384}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &774817388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774817384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 4
+    ImpulseShape: 0
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 1
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &774817389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774817384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyAfter: 2
+  ChannelMask: 4
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &774817390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774817384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &774817391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774817384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6282170622e8c4998973d6805ccbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1355553408}
+  cameraShakePerlin: {fileID: 774817390}
+  AmplitudeMin: 0.1
+  AmplitudeMax: 3
+  SpeedMin: 80
+  SpeedMax: 120
+  delayFactor: 0.3
 --- !u!1001 &806000777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3658,6 +3812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraManager
       objectReference: {fileID: 0}
+    - target: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 868159762848391336, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       propertyPath: field of view
       value: 60
@@ -3862,6 +4020,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 654626283138515871, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 235375564}
+    - targetCorrespondingSourceObject: {fileID: 654626283138515871, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235375569}
+    - targetCorrespondingSourceObject: {fileID: 654626283138515871, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235375570}
+    - targetCorrespondingSourceObject: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 774817389}
+    - targetCorrespondingSourceObject: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 774817388}
+    - targetCorrespondingSourceObject: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 774817390}
+    - targetCorrespondingSourceObject: {fileID: 391382656354722477, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 774817391}
   m_SourcePrefab: {fileID: 100100000, guid: 775add2593884144d9957ab63a1de0b3, type: 3}
 --- !u!114 &965860242 stripped
 MonoBehaviour:
