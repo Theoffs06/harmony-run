@@ -89,7 +89,7 @@ namespace Player {
             _rb.linearVelocity = new Vector3(horizontalVelocity.x, currentVel.y, horizontalVelocity.z);
             if(math.distance(_splineNearestPoint, transform.position) >= maxSteerLength * 5) transform.position = _splineNearestPoint;
             
-            _speedUI.UpdateSpeed(brakeInput ? 0 : actualSpeed,speed * boostSpeedMultiplier);
+            _speedUI.UpdateSpeed(brakeInput ? 0 : actualSpeed,speed * boostSpeedMultiplier * (2 * proximityBoostMultiplier));
             _audio.SetSpeed(brakeInput ? 0 : actualSpeed * 100 / speed);
         }
         
