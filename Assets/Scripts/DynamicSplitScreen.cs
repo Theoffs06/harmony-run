@@ -73,7 +73,7 @@ public class DynamicSplitScreen : MonoBehaviour {
         splitHorizontalImage.SetActive(!horizontalSplit);
 
         if (horizontalSplit) {
-            if (_player1.position.x < _player2.position.x) {
+            if (_player1.localPosition.x < _player2.localPosition.x) {
                 playerListener1.transform.localPosition = Vector3.right * listenerDistance;
                 playerListener2.transform.localPosition = Vector3.left * listenerDistance;
                 SetRects(Left, Right);
@@ -85,7 +85,7 @@ public class DynamicSplitScreen : MonoBehaviour {
             }
         }
         else {
-            if (_player1.position.y > _player2.position.y)
+            if (_player1.localPosition.y > _player2.localPosition.y)
                 SetRects(Top, Bottom);
             else
                 SetRects(Bottom, Top);
