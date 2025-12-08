@@ -620,7 +620,6 @@ MonoBehaviour:
     m_Bits: 8
   boostSpeedMultiplier: 1.4
   brakeStrength: 50
-  speedUI: {fileID: 0}
 --- !u!114 &4015718791812035246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostConsumptionRate: 0.01
-  boostUI: {fileID: 0}
 --- !u!114 &5558225601504644657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d6e228990a04644b8e79928d1c4b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiScore: {fileID: 0}
 --- !u!114 &2604299016019660792
 MonoBehaviour:
   m_ObjectHideFlags: 0
