@@ -85,7 +85,5 @@ namespace Player {
         public void SetScore(float score) {
             RuntimeManager.StudioSystem.setParameterByName("Score", score);
         }
-
-
     }
 }

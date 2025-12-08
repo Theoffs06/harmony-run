@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using Triggers;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,11 +20,11 @@ namespace Player {
             var rb = GetComponent<Rigidbody>();
             _ground = GetComponent<PlayerGround>();
             
-            _tricks = GetComponent<PlayerTricks>();
-            _tricks.OnCreate(scoreUI);
-            
             _audio = GetComponent<PlayerAudio>();
             _audio.OnCreate(rb);
+            
+            _tricks = GetComponent<PlayerTricks>();
+            _tricks.OnCreate(scoreUI, _audio);
             
             _jump = GetComponent<PlayerJump>();
             _jump.OnCreate(rb, _audio);

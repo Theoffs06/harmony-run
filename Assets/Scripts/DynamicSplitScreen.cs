@@ -1,29 +1,25 @@
-using System.Collections;
 using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DynamicSplitScreen : MonoBehaviour {
-    private static readonly Rect Left = new(0, 0, 0.5f, 1);
-    private static readonly Rect Right = new(0.5f, 0, 0.5f, 1);
+    /*private static readonly Rect Left = new(0, 0, 0.5f, 1);
+    private static readonly Rect Right = new(0.5f, 0, 0.5f, 1);*/
     
     [SerializeField] private Camera singleCam;
     [SerializeField] private Camera playerCam1;
     [SerializeField] private Camera playerCam2;
+    [SerializeField] private CinemachineCamera singleCineCam;
 
     [SerializeField] private GameObject splitVerticalImage;
-    
+
+    [SerializeField] private GameObject singleListener;
     [SerializeField] private GameObject playerListener1;
     [SerializeField] private GameObject playerListener2;
     
     [SerializeField] private float splitDistance = 10f;
     [SerializeField] private float listenerDistance = 2f;
-
-    [SerializeField] private RawImage Cam1;
-    [SerializeField] private RawImage Cam2;
-
-    [SerializeField] private CinemachineCamera singleCineCam;
     
     public Camera SingleCam => singleCam;
     public Camera PlayerCam1 => playerCam1;
@@ -33,10 +29,15 @@ public class DynamicSplitScreen : MonoBehaviour {
     
     private Transform _player1; 
     private Transform _player2;
+    private Animator _cam1Animator;
+    private Animator _cam2Animator;
     
     public void OnCreate(Transform player1, Transform player2) {
         _player1 = player1;
         _player2 = player2;
+        
+        _cam1Animator = playerCam1.GetComponent<Animator>();
+        _cam2Animator = playerCam2.GetComponent<Animator>();
         SetSingleCamera();
     }
 
@@ -59,42 +60,47 @@ public class DynamicSplitScreen : MonoBehaviour {
         //playerCam2.gameObject.SetActive(false);
         //Cam1.gameObject.SetActive(false);
         //Cam2.gameObject.SetActive(false);
-        playerCam1.GetComponent<Animator>().Play("PCam1Reverse");
-        playerCam2.GetComponent<Animator>().Play("PCam2Reverse");
-        singleCineCam.Priority = 1;
+        
         splitVerticalImage.SetActive(false);
+        singleListener.SetActive(true);
+        
+        _cam1Animator.Play("PCam1Reverse"); 
+        _cam2Animator.Play("PCam2Reverse");
+        singleCineCam.Priority = 1;
     }
 
     private void SetSplitCameras() {
         //singleCam.gameObject.SetActive(false);
         //playerCam1.gameObject.SetActive(true);
         //playerCam2.gameObject.SetActive(true);
+        
         splitVerticalImage.SetActive(true);
-        //Cam1.gameObject.SetActive(true);
-        //Cam2.gameObject.SetActive(true);
-        //Cam1.GetComponent<Animator>().Play("Cam1");
-        playerCam1.GetComponent<Animator>().Play("PCam1");
-        //Cam2.GetComponent<Animator>().Play("Cam2");
-        playerCam2.GetComponent<Animator>().Play("PCam2");
+        singleListener.SetActive(false);
+        playerListener1.SetActive(true);
+        playerListener2.SetActive(true);
+        
+        _cam1Animator.Play("PCam1"); 
+        _cam2Animator.Play("PCam2");
         singleCineCam.Priority = -1;
+        
         UpdateViewport();
     }
 
     private void UpdateViewport() {
-        //if (_player1.localPosition.x < _player2.localPosition.x) {
+        if (_player1.localPosition.x < _player2.localPosition.x) {
             playerListener1.transform.localPosition = Vector3.right * listenerDistance;
             playerListener2.transform.localPosition = Vector3.left * listenerDistance;
             //SetRects(Left, Right);
-        ////}
-        ////else {
-        //    playerListener1.transform.localPosition = Vector3.left * listenerDistance;
-        //    playerListener2.transform.localPosition = Vector3.right * listenerDistance;
-        //    SetRects(Right, Left);
-        ////}
+        } 
+        else { 
+            playerListener1.transform.localPosition = Vector3.left * listenerDistance; 
+            playerListener2.transform.localPosition = Vector3.right * listenerDistance; 
+            //SetRects(Right, Left); 
+        }
     }
 
-    private void SetRects(Rect playerRect1, Rect playerRect2) {
+    /*private void SetRects(Rect playerRect1, Rect playerRect2) {
         playerCam1.rect = playerRect1;
         playerCam2.rect = playerRect2;
-    }
+    }*/
 }

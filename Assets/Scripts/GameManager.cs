@@ -1,15 +1,17 @@
-﻿using Player;
+﻿using System.Linq;
+using Player;
 using Triggers;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private PlayerController player1;
     [SerializeField] private PlayerController player2;
     [SerializeField] private DynamicSplitScreen cameraManager;
     [SerializeField] private EndTrigger endTrigger;
-    
-    [Header("UI")]
+
+    [Header("UI")] 
     [SerializeField] private UIPlayerPosition player1UI;
     [SerializeField] private UIPlayerPosition player2UI;
     
@@ -26,10 +28,10 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Leaderboard leaderboard;
     [SerializeField] private GameObject leaderboardObject;
 
-    [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject hud;
     
     private bool _isGameOver;
-    private int playersArrived = 0;
+    private int _playersArrived;
 
     private void Awake() {
         boostBarUI.OnCreate();
@@ -76,13 +78,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnGameOver() {
-        playersArrived += 1;
-        if (playersArrived > 1)
-        {
-            HUD.SetActive(false);
-            leaderboardObject.SetActive(true);
-            leaderboard.NewEntry("aaa", "bbb");
-            _isGameOver = true;
-        }
+        if (++_playersArrived <= 1) return;
+        
+        hud.SetActive(false);
+        leaderboardObject.SetActive(true);
+        leaderboard.NewEntry(GenerateRandomLetters(3), GenerateRandomLetters(3));
+        _isGameOver = true;
+    }
+
+    private static string GenerateRandomLetters(int length) {
+        var random = new System.Random();
+        
+        const string chars = "abcdefghijklmnopqrstuvwxyz";
+        return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 }

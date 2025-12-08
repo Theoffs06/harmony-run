@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Player {
         private bool _player1MadeATrick;
         private bool _player2MadeATrick;
 
-        public int SucceedTricks(int player) {
+        public Tuple<int, bool> SucceedTricks(int player) {
             var points = baseTrickScore;
         
             if (player == 0) {
@@ -24,17 +25,17 @@ namespace Player {
                 _player2MadeATrick = true;
             }
 
-            if (!_player1MadeATrick || !_player2MadeATrick) return points;
+            if (!_player1MadeATrick || !_player2MadeATrick) return new Tuple<int, bool>(points, false);
             var tricksTimingDifference = math.abs(_player1LastTrickTime - _player2LastTrickTime);
         
             _player1MadeATrick = false;
             _player2MadeATrick = false;
             
             if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger) {
-                points = (int)(points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
+                points = (int) (points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
             }
 
-            return points;
+            return new Tuple<int, bool>(points, true);
         }
     }
 }
