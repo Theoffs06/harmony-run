@@ -147,10 +147,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2778739905594348643}
     m_Modifications:
-    - target: {fileID: 143798741158801493, guid: a47581b601d2ecf4998216ec88e7b3f1, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: cd14e249aaaebda4397c4a2b815a911e, type: 2}
     - target: {fileID: 1432293072834770100, guid: a47581b601d2ecf4998216ec88e7b3f1, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4

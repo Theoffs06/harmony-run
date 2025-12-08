@@ -7,14 +7,18 @@ namespace UI {
         private static readonly int FillValue = Shader.PropertyToID("_Fill_Value");
         
         [SerializeField] private float smoothTime = 0.15f;
+        [SerializeField] private Image fillImage;
+        
         private float _currentValue = 1f;
         private Coroutine _smoothRoutine;
         
         private Material _material;
 
-        private void Awake() {
-            _material = GetComponent<Image>().material;
+        public void OnCreate() {
+            _material = Instantiate(fillImage.material);
             _material.SetFloat(FillValue, _currentValue);
+            
+            fillImage.material = _material;
         }
 
         public void UpdateSpeed(float speed, float maxSpeed) {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player {
@@ -13,12 +14,12 @@ namespace Player {
         private float _directionInput;
         private bool _brakeInput;
         
-        private void Awake() {
+        public void OnCreate(UIBoostBar boostBarUI, UISpeedBar speedBarUI, UIScore scoreUI) {
             var rb = GetComponent<Rigidbody>();
             _ground = GetComponent<PlayerGround>();
             
             _tricks = GetComponent<PlayerTricks>();
-            _tricks.OnCreate();
+            _tricks.OnCreate(scoreUI);
             
             _audio = GetComponent<PlayerAudio>();
             _audio.OnCreate(rb);
@@ -27,21 +28,21 @@ namespace Player {
             _jump.OnCreate(rb, _audio);
             
             _boost = GetComponent<PlayerBoost>();
-            _boost.OnCreate(_audio);
+            _boost.OnCreate(_audio, boostBarUI);
             
             _movement = GetComponent<PlayerMovement>();
-            _movement.OnCreate(rb, _boost, _ground, _audio);
+            _movement.OnCreate(rb, _boost, _ground, _audio, speedBarUI);
         }
 
-        private void Start() {
+        public void OnStart() {
             _audio.OnStart();
         }
 
-        private void Update() {
+        public void OnUpdate() {
             _tricks.OnUpdate(_ground.IsGrounded());
         }
 
-        private void FixedUpdate() {
+        public void OnFixedUpdate() {
             _movement.OnFixedUpdate();
             _movement.Advance(_directionInput, _brakeInput);
         }

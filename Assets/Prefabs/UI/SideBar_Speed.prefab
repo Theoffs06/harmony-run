@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 520823067403805162}
   - component: {fileID: 4731225042132642737}
   - component: {fileID: 143798741158801493}
-  - component: {fileID: 2504192968752196643}
   m_Layer: 0
   m_Name: SideBar_Fill
   m_TagString: Untagged
@@ -76,18 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2504192968752196643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3922245265608335630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246efc6ed9bc40a6b6180bc08c3eacda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7385416524096632880
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +86,7 @@ GameObject:
   - component: {fileID: 7986002952072972103}
   - component: {fileID: 1856701377557261024}
   - component: {fileID: 4521465954964683835}
+  - component: {fileID: 1982722476425360023}
   m_Layer: 0
   m_Name: SideBar_Speed
   m_TagString: Untagged
@@ -166,6 +154,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1982722476425360023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385416524096632880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246efc6ed9bc40a6b6180bc08c3eacda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.15
+  fillImage: {fileID: 143798741158801493}
 --- !u!1 &8198660852313534769
 GameObject:
   m_ObjectHideFlags: 0
