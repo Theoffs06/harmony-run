@@ -4,15 +4,12 @@ using UnityEngine;
 public class DynamicSplitScreen : MonoBehaviour {
     private static readonly Rect Left = new(0, 0, 0.5f, 1);
     private static readonly Rect Right = new(0.5f, 0, 0.5f, 1);
-    private static readonly Rect Top = new(0, 0.5f, 1, 0.5f);
-    private static readonly Rect Bottom = new(0, 0, 1, 0.5f);
     
     [SerializeField] private Camera singleCam;
     [SerializeField] private Camera playerCam1;
     [SerializeField] private Camera playerCam2;
 
     [SerializeField] private GameObject splitVerticalImage;
-    [SerializeField] private GameObject splitHorizontalImage;
     
     [SerializeField] private GameObject playerListener1;
     [SerializeField] private GameObject playerListener2;
@@ -54,41 +51,27 @@ public class DynamicSplitScreen : MonoBehaviour {
         playerCam1.gameObject.SetActive(false);
         playerCam2.gameObject.SetActive(false);
         splitVerticalImage.SetActive(false);
-        splitHorizontalImage.SetActive(false);
+        splitVerticalImage.SetActive(false);
     }
 
     private void SetSplitCameras() {
         singleCam.gameObject.SetActive(false);
         playerCam1.gameObject.SetActive(true);
         playerCam2.gameObject.SetActive(true);
+        splitVerticalImage.SetActive(true);
         UpdateViewport();
     }
 
     private void UpdateViewport() {
-        var dx = Mathf.Abs(_player1.position.x - _player2.position.x);
-        var dy = Mathf.Abs(_player1.position.y - _player2.position.y);
-
-        var horizontalSplit = dx >= dy;
-        splitVerticalImage.SetActive(horizontalSplit);
-        splitHorizontalImage.SetActive(!horizontalSplit);
-
-        if (horizontalSplit) {
-            if (_player1.localPosition.x < _player2.localPosition.x) {
-                playerListener1.transform.localPosition = Vector3.right * listenerDistance;
-                playerListener2.transform.localPosition = Vector3.left * listenerDistance;
-                SetRects(Left, Right);
-            }
-            else {
-                playerListener1.transform.localPosition = Vector3.left * listenerDistance;
-                playerListener2.transform.localPosition = Vector3.right * listenerDistance;
-                SetRects(Right, Left);
-            }
+        if (_player1.localPosition.x < _player2.localPosition.x) {
+            playerListener1.transform.localPosition = Vector3.right * listenerDistance;
+            playerListener2.transform.localPosition = Vector3.left * listenerDistance;
+            SetRects(Left, Right);
         }
         else {
-            if (_player1.localPosition.y > _player2.localPosition.y)
-                SetRects(Top, Bottom);
-            else
-                SetRects(Bottom, Top);
+            playerListener1.transform.localPosition = Vector3.left * listenerDistance;
+            playerListener2.transform.localPosition = Vector3.right * listenerDistance;
+            SetRects(Right, Left);
         }
     }
 
