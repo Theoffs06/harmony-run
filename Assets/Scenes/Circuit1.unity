@@ -8020,7 +8020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e79005bbdeb7c042bbede0fe981231d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreConverterMaxDelay: 2
+  ScoreConverterMaxDelay: 3
   ScoreConverterFactor: 0.0005
   boostBar: {fileID: 79707894}
   player1Score: {fileID: 1564248573}
