@@ -22,8 +22,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private UIBoostBar boostBarUI;
     [SerializeField] private UIChronometer chronometerUI;
     [SerializeField] private UITurns turnsUI;
+
+    [SerializeField] private Leaderboard leaderboard;
+    [SerializeField] private GameObject leaderboardObject;
+
+    [SerializeField] private GameObject HUD;
     
     private bool _isGameOver;
+    private int playersArrived = 0;
 
     private void Awake() {
         boostBarUI.OnCreate();
@@ -70,6 +76,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnGameOver() {
-        _isGameOver = true;
+        playersArrived += 1;
+        if (playersArrived > 1)
+        {
+            HUD.SetActive(false);
+            leaderboardObject.SetActive(true);
+            leaderboard.NewEntry("aaa", "bbb");
+            _isGameOver = true;
+        }
     }
 }
