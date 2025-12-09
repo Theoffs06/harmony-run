@@ -12,14 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Tuto.unity
     guid: ce2848d4fbf9823419643f0265748c39
   - enabled: 1
+    path: Assets/Scenes/Circuit1_Art.unity
+    guid: 35b98461139c2554788acf45fefd423e
+  - enabled: 1
     path: Assets/Scenes/Game.unity
-    guid: e76eb251a70df624f9fb033cb732aea4
+    guid: d80f1e5060540f14983373d3571c5e2f
   - enabled: 1
     path: Assets/Scenes/Leaderboard.unity
     guid: 33c25d8c0611ee148a93c6385831dc75
-  - enabled: 1
-    path: Assets/Scenes/Circuit1_Art.unity
-    guid: 35b98461139c2554788acf45fefd423e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
