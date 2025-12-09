@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         InitPersistentEvents();
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
     }
 
     // Lance les événements FMOD persistants

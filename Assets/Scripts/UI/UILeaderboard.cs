@@ -1,3 +1,4 @@
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,7 @@ namespace UI {
         }
 
         private static void PressRestart(InputAction.CallbackContext obj) {
+            RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 0f);
             SceneManager.LoadScene("Game");
         }
     }

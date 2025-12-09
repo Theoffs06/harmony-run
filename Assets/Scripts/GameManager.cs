@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using FMODUnity;
 using Player;
 using TMPro;
 using Triggers;
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour {
         
         hud.SetActive(false);
         LeaderBoard.NewEntry(GenerateRandomLetters(3), GenerateRandomLetters(3));
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
         SceneManager.LoadScene("Leaderboard");
     }
 
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour {
         startTxt.SetText("GO!");
         yield return PlayPopAndWait(1.75f);
         
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 0f);
         _isGameOver = false;
         startTxt.gameObject.SetActive(false);
     }
