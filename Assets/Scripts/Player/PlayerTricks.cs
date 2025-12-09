@@ -4,6 +4,10 @@ using UnityEngine;
 namespace Player {
     [RequireComponent(typeof(Animator))]
     public class PlayerTricks : MonoBehaviour {
+
+        [SerializeField] private UIBoostBar boostBar;
+        [SerializeField] private float scoreConverterFactor = 0.001f;
+
         private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
 
         private PlayerAudio _audio;
@@ -28,8 +32,9 @@ namespace Player {
 
         public void SucceedTrick() {
             var trick = _syncActions.SucceedTricks(gameObject.name == "Player 1" ? 0 : 1);
-            
-            _uiScore.IncreaseScore(trick.Item1);
+
+            //_uiScore.IncreaseScore(trick.Item1);
+            boostBar.IncreaseBoost(trick.Item1 * scoreConverterFactor);
             _audio.OnFigureSuccess(trick.Item2);
         }
 
