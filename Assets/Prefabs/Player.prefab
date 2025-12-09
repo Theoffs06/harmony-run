@@ -756,6 +756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d6e228990a04644b8e79928d1c4b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostBar: {fileID: 0}
+  scoreConverterFactor: 0.001
+  OnPlayerFailedTrick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2604299016019660792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c353db6f861b64cadf0f051d5358dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistanceTrigger: 0
+  maxDistanceTrigger: 10
   mate: {fileID: 0}
 --- !u!1001 &2351718981362149860
 PrefabInstance:
