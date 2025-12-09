@@ -1,38 +1,69 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Player {
-    public class PlayerSyncActions : MonoBehaviour {
+namespace Player
+{
+    public class PlayerSyncActions : MonoBehaviour
+    {
         [Header("Score Multiplier")]
-        [SerializeField] private int baseTrickScore;
-        [SerializeField] private float maxTimingMultiplierTrigger;
-        [SerializeField] private float tricksTimingScoreMultiplier;
+        [SerializeField]
+        private int baseTrickScore;
+
+        [SerializeField]
+        private float maxTimingMultiplierTrigger;
+
+        [SerializeField]
+        private float tricksTimingScoreMultiplier;
+
+        [SerializeField]
+        public UnityEvent<int> OnPlayerSucceededTricks = new();
+
+        [SerializeField]
+        public UnityEvent OnPlayerSucceededTricksDuo = new();
 
         private float _player1LastTrickTime;
         private float _player2LastTrickTime = 1;
         private bool _player1MadeATrick;
         private bool _player2MadeATrick;
 
-        public int SucceedTricks(int player) {
+        public int SucceedTricks(int player)
+        {
             var points = baseTrickScore;
-        
-            if (player == 0) {
+
+            OnPlayerSucceededTricks.Invoke(player);
+
+            if (player == 0)
+            {
                 _player1LastTrickTime = Time.time;
                 _player1MadeATrick = true;
-            } else {
+            }
+            else
+            {
                 _player2LastTrickTime = Time.time;
                 _player2MadeATrick = true;
             }
 
-            if (!_player1MadeATrick || !_player2MadeATrick) return points;
+            if (!_player1MadeATrick || !_player2MadeATrick)
+                return points;
             var tricksTimingDifference = math.abs(_player1LastTrickTime - _player2LastTrickTime);
-        
+
             _player1MadeATrick = false;
             _player2MadeATrick = false;
-            
-            if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger) {
-                points = (int)(points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
+
+            if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger)
+            {
+                points = (int)(
+                    points
+                    * (
+                        1
+                        + tricksTimingScoreMultiplier
+                            * (maxTimingMultiplierTrigger - tricksTimingDifference)
+                            / maxTimingMultiplierTrigger
+                    )
+                );
             }
+            OnPlayerSucceededTricksDuo.Invoke();
 
             return points;
         }
