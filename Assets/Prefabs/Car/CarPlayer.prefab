@@ -325,7 +325,6 @@ GameObject:
   - component: {fileID: 7902193979061081249}
   - component: {fileID: 7953428178561699293}
   - component: {fileID: 3281631129357886636}
-  - component: {fileID: 8734679600196228175}
   m_Layer: 0
   m_Name: VFX_SpeedLines (2)
   m_TagString: Untagged
@@ -401,28 +400,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8734679600196228175
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802400272041983940}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1832507361266476224
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +725,6 @@ GameObject:
   - component: {fileID: 3691750029732461430}
   - component: {fileID: 5013336450642325899}
   - component: {fileID: 5044107028221010211}
-  - component: {fileID: 6412378081708287129}
   m_Layer: 0
   m_Name: VFX_SpeedLines (1)
   m_TagString: Untagged
@@ -824,28 +800,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6412378081708287129
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3583367936066042352}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3858398115766902377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6037,7 +5991,6 @@ GameObject:
   - component: {fileID: 4710739690620632551}
   - component: {fileID: 29179339609344599}
   - component: {fileID: 5914816905289990275}
-  - component: {fileID: 1891575704942603193}
   m_Layer: 0
   m_Name: VFX_SpeedLines (4)
   m_TagString: Untagged
@@ -6113,28 +6066,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1891575704942603193
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931898723158469046}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6474407167173699109
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,7 +6077,6 @@ GameObject:
   - component: {fileID: 3517755386660185229}
   - component: {fileID: 8101147305609141803}
   - component: {fileID: 4828101469961974997}
-  - component: {fileID: 8691550550794358099}
   m_Layer: 0
   m_Name: VFX_SpeedLines (3)
   m_TagString: Untagged
@@ -6222,28 +6152,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8691550550794358099
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6474407167173699109}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6875653515025850311
 GameObject:
   m_ObjectHideFlags: 0
