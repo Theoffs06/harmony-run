@@ -21,7 +21,9 @@ namespace UI {
         }
         
         private static void PressStart(InputAction.CallbackContext obj) {
+            AudioManager.Instance.PlayUISound();
             SceneManager.LoadScene("Tuto");
+            
         }
     }
 }

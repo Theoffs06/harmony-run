@@ -31,9 +31,10 @@ public class TutorialManager : MonoBehaviour {
     private void NextAnim(InputAction.CallbackContext obj) {
         if (++_state >= anims.Length) {
             StartCoroutine(LoadGameAfterAdditive());
+            
             return;
         }
-        
+        AudioManager.Instance.PlayUISound();
         anims[_state - 1].SetActive(false);
         anims[_state].SetActive(true);
     }

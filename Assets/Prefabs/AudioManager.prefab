@@ -78,3 +78,10 @@ MonoBehaviour:
       Data3: 376240021
       Data4: -359131526
     Path: event:/Ambiance/Environnement_Ambiance
+  uiEvent:
+    Guid:
+      Data1: -285959845
+      Data2: 1315550333
+      Data3: 1186567329
+      Data4: 1539850372
+    Path: event:/UI/Button_Click
