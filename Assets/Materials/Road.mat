@@ -43,10 +43,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MidLine_size: 0.05
-    - _Noise2_Scale: 1
+    - _MidLine_size: 0.005
+    - _Noise2_Scale: 0.2
     - _Noise2_Strength: 1
-    - _SideLines_size: 0.05
+    - _SideLines_size: 0.08
     m_Colors:
     - _Color: {r: 0.23584905, g: 0.21725446, b: 0.20581165, a: 1}
     - _MidLine_Color: {r: 0.9320754, g: 0.857656, b: 0.047482975, a: 0}
