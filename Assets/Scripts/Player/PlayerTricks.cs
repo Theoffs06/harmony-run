@@ -1,12 +1,16 @@
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Player {
+namespace Player
+{
     [RequireComponent(typeof(Animator))]
     public class PlayerTricks : MonoBehaviour {
 
         [SerializeField] private UIBoostBar boostBar;
         [SerializeField] private float scoreConverterFactor = 0.001f;
+
+        public UnityEvent OnPlayerFailedTrick;
 
         private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
 
@@ -18,7 +22,7 @@ namespace Player {
         public void OnCreate(UIScore uiScore, PlayerAudio  audioManager) {
             _audio = audioManager;
             _uiScore = uiScore;
-            
+
             _animator = GetComponent<Animator>();
             _syncActions = GetComponentInParent<PlayerSyncActions>();
         }
@@ -41,6 +45,7 @@ namespace Player {
         public void FailedTrick() {
             _uiScore.ResetScore();
             _audio.OnFigureFail();
+            OnPlayerFailedTrick.Invoke();
         }
     }
 }
