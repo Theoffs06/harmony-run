@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using FMODUnity;
 using Player;
@@ -27,6 +28,10 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private GameObject hud;
     [SerializeField] private TMP_Text startTxt;
+
+    [Header("Music Distance Parameter")]
+    [SerializeField] private float maxDistanceForMusic;
+    [SerializeField] private float minDistanceForMusic;
     
     private bool _isGameOver;
     private int _playersArrived;
@@ -69,6 +74,17 @@ public class GameManager : MonoBehaviour {
         
         player1.OnUpdate();
         player2.OnUpdate();
+
+        // PlayerDistance = 0 if distance <= minDistanceForMusic
+        // PlayerDistance = 100 if distance >= maxDistanceForMusic
+        RuntimeManager.StudioSystem.setParameterByName("PlayerDistance",
+            Mathf.Clamp(
+                100*(Vector3.Distance(player1.transform.position, player2.transform.position) - minDistanceForMusic)
+                /maxDistanceForMusic
+            , 0f, 100f)
+        );
+
+        // print(Mathf.Clamp(100*(Vector3.Distance(player1.transform.position, player2.transform.position) - minDistanceForMusic)/maxDistanceForMusic, 0f, 100f));
     }
     
     private void FixedUpdate() {

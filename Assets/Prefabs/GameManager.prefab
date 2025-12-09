@@ -52,7 +52,10 @@ MonoBehaviour:
   player2UI: {fileID: 0}
   player1ScoreUI: {fileID: 0}
   player2ScoreUI: {fileID: 0}
-  player1SpeedUI: {fileID: 0}
-  player2SpeedUI: {fileID: 0}
   boostBarUI: {fileID: 0}
   chronometerUI: {fileID: 0}
+  turnsUI: {fileID: 0}
+  hud: {fileID: 0}
+  startTxt: {fileID: 0}
+  maxDistanceForMusic: 250
+  minDistanceForMusic: 30
