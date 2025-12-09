@@ -103,9 +103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTrickScore: 100
-  proximityScoreMultiplier: 1
   maxTimingMultiplierTrigger: 1
   tricksTimingScoreMultiplier: 1
+  OnPlayerSucceededTricks:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerSucceededTricksDuo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6172930413131577544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,13 +206,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8886660033330923854, guid: b00894ae02852d44380319c516374416, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5126211304798421360}
   m_SourcePrefab: {fileID: 100100000, guid: b00894ae02852d44380319c516374416, type: 3}
 --- !u!4 &2697990616294736646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132260311005428686, guid: b00894ae02852d44380319c516374416, type: 3}
   m_PrefabInstance: {fileID: 6172930413131577544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3384848428104184198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8886660033330923854, guid: b00894ae02852d44380319c516374416, type: 3}
+  m_PrefabInstance: {fileID: 6172930413131577544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5126211304798421360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3384848428104184198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812aa0ebadfdd0a49ac225f7ebd002a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMainColor: {r: 0, g: 1, b: 0, a: 1}
+  _playerNeonColor: {r: 0, g: 1, b: 0, a: 1}
+  _playerNeonInt: 3
+  _trailNeonColor: {r: 0, g: 1, b: 0, a: 1}
+  _trailNeonInt: 3
 --- !u!1001 &8112530343835387940
 PrefabInstance:
   m_ObjectHideFlags: 0
