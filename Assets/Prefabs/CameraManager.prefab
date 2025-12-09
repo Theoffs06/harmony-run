@@ -50,17 +50,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac694f054dac0e48b6c36262cd41467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   singleCam: {fileID: 2869418272438514455}
   playerCam1: {fileID: 868159762848391336}
   playerCam2: {fileID: 7858041175562305114}
   splitVerticalImage: {fileID: 0}
-  splitHorizontalImage: {fileID: 0}
+  singleListener: {fileID: 4701673212594569880}
   playerListener1: {fileID: 202739050519608227}
   playerListener2: {fileID: 8969119508014387891}
   splitDistance: 10
   listenerDistance: 10
+  cam1: {fileID: 0}
+  cam2: {fileID: 0}
+  singleCineCam: {fileID: 7306207766429298018}
 --- !u!1 &202739050519608227
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ Transform:
   m_GameObject: {fileID: 654626283138515871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2.4, z: -8}
+  m_LocalPosition: {x: -2.87, y: 2.4, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -323,6 +324,7 @@ GameObject:
   - component: {fileID: 868159762848391336}
   - component: {fileID: 1649288037844768035}
   - component: {fileID: 215807626404662259}
+  - component: {fileID: 7392535670855025366}
   m_Layer: 0
   m_Name: Player 1 Camera
   m_TagString: Untagged
@@ -339,7 +341,7 @@ Transform:
   m_GameObject: {fileID: 694767160614704851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2.4, z: -8}
+  m_LocalPosition: {x: -1.435, y: 2.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -387,7 +389,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: cf5df4881ee178646b565e475878540e, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -465,7 +467,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.5
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -473,6 +475,28 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!95 &7392535670855025366
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694767160614704851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d358df9a7e1ab2e47b2c617594fab726, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4701673212594569880
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +555,7 @@ GameObject:
   - component: {fileID: 7858041175562305114}
   - component: {fileID: 3060216653233816025}
   - component: {fileID: 1171118562018652188}
+  - component: {fileID: 200236763007231140}
   m_Layer: 0
   m_Name: Player 2 Camera
   m_TagString: Untagged
@@ -547,7 +572,7 @@ Transform:
   m_GameObject: {fileID: 4964818329783955117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: -8}
+  m_LocalPosition: {x: -1.435, y: 2.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -595,7 +620,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 2e50d9427c84c0c4db1c389006e1e90c, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -673,7 +698,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.5
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -681,6 +706,28 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!95 &200236763007231140
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964818329783955117}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5119355ea0b3d434abb347c51ad6b457, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5609130480863261726
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +756,7 @@ Transform:
   m_GameObject: {fileID: 5609130480863261726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 2.4, z: -10}
+  m_LocalPosition: {x: -1.435, y: 2.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -835,7 +882,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.5
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -870,7 +917,7 @@ Transform:
   m_GameObject: {fileID: 7007861155848826729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 2.4, z: -10}
+  m_LocalPosition: {x: -1.435, y: 2.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -889,9 +936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
-  OutputChannel: 1
+    Enabled: 1
+    m_Value: 1
+  OutputChannel: 7
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0

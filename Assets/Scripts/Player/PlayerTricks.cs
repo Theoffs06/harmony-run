@@ -1,26 +1,51 @@
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Player {
+namespace Player
+{
     [RequireComponent(typeof(Animator))]
     public class PlayerTricks : MonoBehaviour {
+
+        [SerializeField] private UIBoostBar boostBar;
+        [SerializeField] private float scoreConverterFactor = 0.001f;
+
+        public UnityEvent OnPlayerFailedTrick;
+
         private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
-        
+
+        private PlayerAudio _audio;
         private Animator _animator; 
         private PlayerSyncActions _syncActions; 
         private UIScore _uiScore;
 
-        public void OnCreate(UIScore uiScore) {
+        public void OnCreate(UIScore uiScore, PlayerAudio  audioManager) {
+            _audio = audioManager;
             _uiScore = uiScore;
-            
+
             _animator = GetComponent<Animator>();
             _syncActions = GetComponentInParent<PlayerSyncActions>();
         }
 
         public void OnUpdate(bool isGrounded) => _animator.SetBool(IsGrounded, isGrounded);
-        
-        public void LaunchTrick() => _animator.Play("Kickflip");
-        public void SucceedTrick() => _uiScore.IncreaseScore(_syncActions.SucceedTricks(gameObject.name == "Player 1" ? 0 : 1));
-        public void FailedTrick() => _uiScore.ResetScore();
+
+        public void LaunchTrick() {
+            _animator.Play("Kickflip");
+            _audio.OnFigureTry();
+        }
+
+        public void SucceedTrick() {
+            var trick = _syncActions.SucceedTricks(gameObject.name == "Player 1" ? 0 : 1);
+
+            //_uiScore.IncreaseScore(trick.Item1);
+            boostBar.IncreaseBoost(trick.Item1 * scoreConverterFactor);
+            _audio.OnFigureSuccess(trick.Item2);
+        }
+
+        public void FailedTrick() {
+            _uiScore.ResetScore();
+            _audio.OnFigureFail();
+            OnPlayerFailedTrick.Invoke();
+        }
     }
 }

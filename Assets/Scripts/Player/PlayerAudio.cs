@@ -9,6 +9,12 @@ namespace Player {
         [SerializeField] private EventReference boostStartEvent;
         [SerializeField] private EventReference boostEndEvent;
         [SerializeField] private EventReference jumpEvent;
+        [SerializeField] private EventReference figureTryEvent;
+        [SerializeField] private EventReference figureSuccessEvent;
+        [SerializeField] private EventReference figureSuccessTeamEvent;
+        [SerializeField] private EventReference figureFailEvent;
+        [SerializeField] private EventReference ringCrossedEvent;
+        [SerializeField] private EventReference ringCrossedTeamEvent;
         [SerializeField] private bool muteSound;
 
         private EventInstance _motorInstance;
@@ -44,6 +50,26 @@ namespace Player {
             RuntimeManager.PlayOneShotAttached(boostEndEvent, gameObject);
         }
 
+        public void OnFigureTry() {
+            if (muteSound) return;
+            RuntimeManager.PlayOneShotAttached(figureTryEvent, gameObject);
+        }
+
+        public void OnFigureFail() {
+            if (muteSound) return;
+            RuntimeManager.PlayOneShotAttached(figureFailEvent, gameObject);
+        }
+
+        public void OnFigureSuccess(bool isTeam) {
+            if (muteSound) return;
+            RuntimeManager.PlayOneShotAttached(isTeam ? figureSuccessTeamEvent : figureSuccessEvent, gameObject);
+        }
+
+        public void OnRingCrossed(bool isTeam) {
+            if (muteSound) return;
+            RuntimeManager.PlayOneShotAttached(isTeam ? ringCrossedTeamEvent : ringCrossedEvent, gameObject);
+        }
+
         public void SetSpeed(float speed) {
             if (!_motorInstance.isValid() || !_windInstance.isValid()) return;
             _motorInstance.setParameterByName("Speed", speed);
@@ -54,6 +80,10 @@ namespace Player {
             if (!_motorInstance.isValid() || !_windInstance.isValid()) return;
             _windInstance.setParameterByName("Boost", boosted);
             _motorInstance.setParameterByName("Boost", boosted);
+        }
+
+        public void SetScore(float score) {
+            RuntimeManager.StudioSystem.setParameterByName("Score", score);
         }
     }
 }

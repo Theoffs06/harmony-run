@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Player {
     public class PlayerBoost : MonoBehaviour {
         [SerializeField] private float boostConsumptionRate = 0.01f;
+        
         public bool IsBoosted { get; private set; }
         
         private PlayerAudio _audio; 

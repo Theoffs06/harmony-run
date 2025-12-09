@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using Triggers;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,15 +16,15 @@ namespace Player {
         private float _directionInput;
         private bool _brakeInput;
         
-        public void OnCreate(UIBoostBar boostBarUI, UISpeedBar speedBarUI, UIScore scoreUI) {
+        public void OnCreate(UIBoostBar boostBarUI, UIScore scoreUI) {
             var rb = GetComponent<Rigidbody>();
             _ground = GetComponent<PlayerGround>();
             
-            _tricks = GetComponent<PlayerTricks>();
-            _tricks.OnCreate(scoreUI);
-            
             _audio = GetComponent<PlayerAudio>();
             _audio.OnCreate(rb);
+            
+            _tricks = GetComponent<PlayerTricks>();
+            _tricks.OnCreate(scoreUI, _audio);
             
             _jump = GetComponent<PlayerJump>();
             _jump.OnCreate(rb, _audio);
@@ -32,7 +33,7 @@ namespace Player {
             _boost.OnCreate(_audio, boostBarUI);
             
             _movement = GetComponent<PlayerMovement>();
-            _movement.OnCreate(rb, _boost, _ground, _audio, speedBarUI);
+            _movement.OnCreate(rb, _boost, _ground, _audio);
 
             _scoreConverterTrigger = GetComponent<ScoreConverterTrigger>();
             _scoreConverterTrigger.OnCreate();
