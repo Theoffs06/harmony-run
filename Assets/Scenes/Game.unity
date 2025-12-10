@@ -4480,7 +4480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c9e5ff21e9d33b146b01c47d64d6b26d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7caf6b3558f45d43bca4dacad903733, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4529,18 +4529,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 985621320}
   animationName: DuoUI
-  animationUI: {fileID: 0}
+  animationUI: {fileID: 985621323}
   playerSyncActions: {fileID: 1169624027}
   timingTextures:
-  - {fileID: 21300000, guid: 93869411369f7444a9ff9d87ca255879, type: 3}
-  - {fileID: 21300000, guid: 93869411369f7444a9ff9d87ca255879, type: 3}
-  - {fileID: 21300000, guid: ac488b5f9695c2d4486dc1a918f541b4, type: 3}
-  - {fileID: 21300000, guid: 935072243ef570049847caeef6831d94, type: 3}
+  - {fileID: 21300000, guid: b7caf6b3558f45d43bca4dacad903733, type: 3}
+  - {fileID: 21300000, guid: cb04857831f88eb449ec0874ff1216f9, type: 3}
+  - {fileID: 21300000, guid: c6d268e6a8cd56c4fbf44f39eb635b29, type: 3}
+  - {fileID: 21300000, guid: 472ef40591691594aab2638b70bf3351, type: 3}
   timingTextureScales:
+  - 0.4
+  - 0.5
   - 1
-  - 1.2
-  - 3
-  - 5
+  - 1.3
 --- !u!1001 &1028238627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6413,7 +6413,7 @@ MonoBehaviour:
   MinSpeed: 60
   MaxSpeed: 100
   minEffectDensity: 0
-  maxEffectDensity: 0.9
+  maxEffectDensity: 0.8
   delayFactor: 0.2
 --- !u!1001 &1564248571
 PrefabInstance:
@@ -8150,7 +8150,7 @@ MonoBehaviour:
   MinSpeed: 60
   MaxSpeed: 100
   minEffectDensity: 0
-  maxEffectDensity: 0.9
+  maxEffectDensity: 0.8
   delayFactor: 0.2
 --- !u!1 &2099085299
 GameObject:

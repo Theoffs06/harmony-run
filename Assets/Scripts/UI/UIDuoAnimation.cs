@@ -29,17 +29,12 @@ public class UIDuoAnimation : UIAnimation
 
         image.sprite = timingTextures[index];
 
-        image.gameObject.GetComponent<RectTransform>().localScale = new Vector3(
+        image.transform.parent.GetComponent<RectTransform>().localScale = new Vector3(
             timingTextureScales[index],
             timingTextureScales[index],
             timingTextureScales[index]
         );
 
         Debug.Log("affichage => " + index);
-
-        if (timinglevel == 0)
-        {
-            image.enabled = false;
-        }
     }
 }

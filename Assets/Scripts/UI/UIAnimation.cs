@@ -25,6 +25,8 @@ public class UIAnimation : MonoBehaviour
     {
         Display();
 
+        animationUI[animationName].time = 0;
+
         animationUI.Play();
     }
 
