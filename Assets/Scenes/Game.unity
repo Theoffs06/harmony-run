@@ -7517,7 +7517,7 @@ PrefabInstance:
       objectReference: {fileID: 1039588440}
     - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
@@ -7528,8 +7528,16 @@ PrefabInstance:
       value: Alpha
       objectReference: {fileID: 0}
     - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Name
+      value: NoisePower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2978972070240151346, guid: cf4096426ddd0c344b6dac8e05558fb8, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
