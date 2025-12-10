@@ -2,8 +2,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Player
-{
+namespace Player {
     [RequireComponent(typeof(Animator))]
     public class PlayerTricks : MonoBehaviour {
 
@@ -44,7 +43,10 @@ namespace Player
 
         public void FailedTrick() {
             _uiScore.ResetScore();
+            
+            boostBar.DecreaseBoost(100 * scoreConverterFactor);
             _audio.OnFigureFail();
+            
             OnPlayerFailedTrick.Invoke();
         }
     }
