@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using FMODUnity;
 using Player;
@@ -64,7 +63,6 @@ public class GameManager : MonoBehaviour {
         player2UI.OnUpdate();
         
         if (_isGameOver) return;
-        if (Chronometer.Seconds >= 180) OnGameOver();
         Chronometer.Update(Time.deltaTime);
         
         cameraManager.OnUpdate();
@@ -96,9 +94,7 @@ public class GameManager : MonoBehaviour {
         _isGameOver = true;
         
         hud.SetActive(false);
-        LeaderBoard.NewEntry(GenerateRandomLetters(3), GenerateRandomLetters(3));
-        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
-        SceneManager.LoadScene("Leaderboard");
+        StartCoroutine(GoToLeaderboard());
     }
 
     private IEnumerator StartGame() {
@@ -142,10 +138,18 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(duration - 0.18f * 2f >= 0f ? duration - 0.18f * 2f : 0f);
     }
     
+    private static IEnumerator GoToLeaderboard() {
+        yield return new WaitForSecondsRealtime(0.5f);
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
+        yield return new WaitForSecondsRealtime(0.5f);
+        
+        LeaderBoard.NewEntry(GenerateRandomLetters(3), GenerateRandomLetters(3));
+        SceneManager.LoadScene("Leaderboard");
+    }
+
+    
     private static string GenerateRandomLetters(int length) {
         var random = new System.Random();
-        
-        const string chars = "abcdefghijklmnopqrstuvwxyz";
-        return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        return new string(Enumerable.Repeat("abcdefghijklmnopqrstuvwxyz", length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 }
