@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
+using FMODUnity;
 using Player;
 using TMPro;
 using Triggers;
@@ -26,6 +28,10 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private GameObject hud;
     [SerializeField] private TMP_Text startTxt;
+
+    [Header("Music Distance Parameter")]
+    [SerializeField] private float maxDistanceForMusic;
+    [SerializeField] private float minDistanceForMusic;
     
     private bool _isGameOver;
     private int _playersArrived;
@@ -68,6 +74,17 @@ public class GameManager : MonoBehaviour {
         
         player1.OnUpdate();
         player2.OnUpdate();
+
+        // PlayerDistance = 0 if distance <= minDistanceForMusic
+        // PlayerDistance = 100 if distance >= maxDistanceForMusic
+        RuntimeManager.StudioSystem.setParameterByName("PlayerDistance",
+            Mathf.Clamp(
+                100*(Vector3.Distance(player1.transform.position, player2.transform.position) - minDistanceForMusic)
+                /maxDistanceForMusic
+            , 0f, 100f)
+        );
+
+        // print(Mathf.Clamp(100*(Vector3.Distance(player1.transform.position, player2.transform.position) - minDistanceForMusic)/maxDistanceForMusic, 0f, 100f));
     }
     
     private void FixedUpdate() {
@@ -82,6 +99,7 @@ public class GameManager : MonoBehaviour {
         
         hud.SetActive(false);
         LeaderBoard.NewEntry(GenerateRandomLetters(3), GenerateRandomLetters(3));
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
         SceneManager.LoadScene("Leaderboard");
     }
 
@@ -94,6 +112,7 @@ public class GameManager : MonoBehaviour {
         startTxt.SetText("GO!");
         yield return PlayPopAndWait(1.75f);
         
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 0f);
         _isGameOver = false;
         startTxt.gameObject.SetActive(false);
     }

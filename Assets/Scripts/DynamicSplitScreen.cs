@@ -41,78 +41,60 @@ public class DynamicSplitScreen : MonoBehaviour
     private Transform _player1;
     private Transform _player2;
 
-    public void OnCreate(Transform player1, Transform player2)
-    {
+    public void OnCreate(Transform player1, Transform player2) {
         _player1 = player1;
         _player2 = player2;
 
         SetSplitCameras();
     }
 
-    public void OnUpdate()
-    {
-        // switch (math.distance(_player1.position, _player2.position) > splitDistance) {
-        //     case true when !IsSplit:
-        //         SetSplitCameras();
-        //         IsSplit = true;
-        //         break;
-        //     case false when IsSplit:
-        //         SetSingleCamera();
-        //         IsSplit = false;
-        //         break;
-        // }
+    public void OnUpdate() { 
+        /*switch (math.distance(_player1.position, _player2.position) > splitDistance) { 
+            case true when !IsSplit: 
+                SetSplitCameras(); 
+                IsSplit = true; 
+                break; 
+            case false when IsSplit: 
+                SetSingleCamera(); 
+                IsSplit = false; 
+                break; 
+        }*/
+        
+        UpdateListener();
     }
+    
+    /*private void SetSingleCamera() { 
+        singleCam.gameObject.SetActive(true); 
+        playerCam2.gameObject.SetActive(false); 
+        splitVerticalImage.SetActive(false); 
+    }*/
 
-    //private void SetSingleCamera()
-    //{
-    //    singleCam.gameObject.SetActive(true);
-    //    playerCam1.gameObject.SetActive(false);
-    //    playerCam2.gameObject.SetActive(false);
-    //    splitVerticalImage.SetActive(false);
-    //    splitVerticalImage.SetActive(false);
-    //    singleListener.SetActive(true);
-
-    //    _cam1Animator.Play("PCam1Reverse"); 
-    //    _cam2Animator.Play("PCam2Reverse");
-    //    singleCineCam.Priority = 1;
-    //}
-
-    private void SetSplitCameras()
-    {
+    private void SetSplitCameras() {
         singleCam.gameObject.SetActive(false);
         playerCam1.gameObject.SetActive(true);
         playerCam2.gameObject.SetActive(true);
         splitVerticalImage.SetActive(true);
-        //singleListener.SetActive(false);
         playerListener1.SetActive(true);
         playerListener2.SetActive(true);
-
-        //_cam1Animator.Play("PCam1");
-        //_cam2Animator.Play("PCam2");
-        //singleCineCam.Priority = -1;
-
-        //UpdateViewport();
+        UpdateListener();
+    }
+    
+    private void UpdateListener() { 
+        if (_player1.localPosition.x < _player2.localPosition.x) { 
+            playerListener1.transform.localPosition = Vector3.right * listenerDistance;
+            playerListener2.transform.localPosition = Vector3.left * listenerDistance; 
+            //SetRects(Left, Right);
+        } 
+        else 
+        { 
+            playerListener1.transform.localPosition = Vector3.left * listenerDistance; 
+            playerListener2.transform.localPosition = Vector3.right * listenerDistance; 
+            //SetRects(Right, Left); 
+        } 
     }
 
-    //private void UpdateViewport()
-    //{
-    //    if (_player1.localPosition.x < _player2.localPosition.x)
-    //    {
-    //        playerListener1.transform.localPosition = Vector3.right * listenerDistance;
-    //        playerListener2.transform.localPosition = Vector3.left * listenerDistance;
-    //        SetRects(Left, Right);
-    //    }
-    //    else
-    //    {
-    //        playerListener1.transform.localPosition = Vector3.left * listenerDistance;
-    //        playerListener2.transform.localPosition = Vector3.right * listenerDistance;
-    //        SetRects(Right, Left);
-    //    }
-    //}
-
-    //private void SetRects(Rect playerRect1, Rect playerRect2)
-    //{
-    //    playerCam1.rect = playerRect1;
-    //    playerCam2.rect = playerRect2;
-    //}
+    /*private void SetRects(Rect playerRect1, Rect playerRect2) {
+         playerCam1.rect = playerRect1;
+         playerCam2.rect = playerRect2;
+    }*/
 }

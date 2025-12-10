@@ -1,3 +1,5 @@
+using System.Collections;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -28,11 +30,20 @@ public class TutorialManager : MonoBehaviour {
 
     private void NextAnim(InputAction.CallbackContext obj) {
         if (++_state >= anims.Length) {
-            SceneManager.LoadScene("Game");
+            StartCoroutine(LoadGameAfterAdditive());
+            
             return;
         }
-        
+        AudioManager.Instance.PlayUISound();
         anims[_state - 1].SetActive(false);
         anims[_state].SetActive(true);
+    }
+
+    private static IEnumerator LoadGameAfterAdditive() {
+        var op = SceneManager.LoadSceneAsync("Circuit1_Art", LoadSceneMode.Additive);
+        
+        while (op is { isDone: false }) yield return null;
+        SceneManager.UnloadSceneAsync("Tuto");
+        SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
     }
 }
