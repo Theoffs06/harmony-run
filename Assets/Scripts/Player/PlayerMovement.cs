@@ -105,8 +105,12 @@ namespace Player
 
         public void Advance(float directionInput, bool brakeInput)
         {
+            Quaternion targetRotation = Quaternion.FromToRotation(Vector3.forward, _splineForward);
+            Vector3 eulerAngles = targetRotation.eulerAngles;
+            eulerAngles.z = 0;
+            Quaternion constrainedRotation = Quaternion.Euler(eulerAngles);
             if (_forceRotation)
-                _rb.MoveRotation(Quaternion.FromToRotation(Vector3.forward, _splineForward));
+                _rb.MoveRotation(constrainedRotation);
 
             var actualSpeed = GetEffectiveSpeed();
 
