@@ -49,7 +49,7 @@ namespace Player {
 
             //_uiScore.IncreaseScore(trick.Item1);
             boostBar.IncreaseBoost(trick.Item1 * scoreConverterFactor);
-            _audio.OnFigureSuccess(trick.Item2);
+            _audio.OnFigureSuccess(_trickCounter);
         }
 
         public void FailedTrick() {
