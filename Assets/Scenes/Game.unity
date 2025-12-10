@@ -4585,6 +4585,10 @@ PrefabInstance:
       propertyPath: mate
       value: 
       objectReference: {fileID: 1809780505}
+    - target: {fileID: 864253022000896152, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      propertyPath: maxDistanceTrigger
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1576628028920537454, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: m_Name
       value: PlayerManager
@@ -4609,6 +4613,10 @@ PrefabInstance:
       propertyPath: mate
       value: 
       objectReference: {fileID: 1547657148}
+    - target: {fileID: 3369160190201997428, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
+      propertyPath: maxDistanceTrigger
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3694248543839980164, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: boostUI
       value: 
@@ -4727,7 +4735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6032486631789515079, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: proximityBoostMultiplier
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6356648502266441883, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: maxTimingMultiplierTrigger
@@ -4823,7 +4831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8541193781029904811, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: proximityBoostMultiplier
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8624580786692632175, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: m_LocalRotation.w

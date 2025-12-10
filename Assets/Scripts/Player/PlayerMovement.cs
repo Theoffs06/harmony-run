@@ -141,7 +141,7 @@ namespace Player
 
             if (_boost && _boost.TryConsumeBoost())
                 current *= boostSpeedMultiplier;
-            current *= _proximitySpeedBoost.ProximityMultiplier() * proximityBoostMultiplier;
+            current *= math.clamp(_proximitySpeedBoost.ProximityMultiplier() * proximityBoostMultiplier, 1, 2);
             return current;
         }
 
