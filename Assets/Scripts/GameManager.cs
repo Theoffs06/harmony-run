@@ -50,8 +50,6 @@ public class GameManager : MonoBehaviour {
         player2.OnCreate(boostBarUI, player2ScoreUI);
         
         cameraManager.OnCreate(player1.transform, player2.transform);
-        player1UI.OnCreate(player1.transform, cameraManager);
-        player2UI.OnCreate(player2.transform, cameraManager);
         
         StartCoroutine(StartGame());
     }

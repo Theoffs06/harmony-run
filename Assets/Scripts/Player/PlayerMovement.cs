@@ -50,6 +50,7 @@ namespace Player
         private float3 _splineNearestPoint;
         private float3 _rightMaxSteerPoint;
         private float3 _leftMaxSteerPoint;
+        public float splineAdvancement;
 
         public SplineContainer TrackSpline
         {
@@ -79,12 +80,12 @@ namespace Player
                 trackSpline.Spline,
                 transform.position,
                 out _splineNearestPoint,
-                out var t
+                out splineAdvancement
             );
 
             // Compute frame from spline first
-            _splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(t));
-            _splineRight = math.normalize(math.cross(new float3(0, 1, 0), _splineForward));
+            _splineForward = math.normalize(trackSpline.Spline.EvaluateTangent(splineAdvancement));
+            _splineRight = math.normalize( Quaternion.LookRotation(Vector3.right) * _splineForward);
 
             // Then compute steering boundaries using the freshly updated right vector
             _rightMaxSteerPoint = _splineNearestPoint + _splineRight * maxSteerLength;

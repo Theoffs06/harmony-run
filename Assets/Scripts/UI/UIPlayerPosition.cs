@@ -1,94 +1,72 @@
+using Player;
 using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class UIPlayerPosition : MonoBehaviour
     {
-        [SerializeField, Range(1, 2)]
-        private int playerCamNumber = 1;
+        [SerializeField, Range(0,1)] private float hideWaypointTreshold;
+        [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private PlayerMovement mateMovement;
+        [SerializeField] private RawImage waypointImage;
 
-        [SerializeField]
-        private Vector2 offset;
+        private float _splineAdvancementDifference;
+        private Vector3 _normalScale = new(1,1,1);
+        private Vector3 _reverseScale = new(1,-1,1);
 
-        private Transform _playerToFollow;
-        private DynamicSplitScreen _cameraManager;
-        private RectTransform _rectTransform;
-
-        public void OnCreate(Transform playerToFollow, DynamicSplitScreen cameraManager)
-        {
-            _rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
-
-            _playerToFollow = playerToFollow;
-            _cameraManager = cameraManager;
-        }
+        private Vector2 _direction;
 
         public void OnUpdate()
         {
-            if (!_cameraManager.IsSplit && false)
+            _splineAdvancementDifference = playerMovement.splineAdvancement - mateMovement.splineAdvancement;
+
+            Vector2 u, v;
+
+            if (_splineAdvancementDifference < 0)
             {
-                UpdatePositionFromCameraSingle(_cameraManager.SingleCam);
-                _rectTransform.gameObject.SetActive(true);
+                transform.localScale = _reverseScale;
+                _direction = (new Vector2(mateMovement.gameObject.transform.position.x, mateMovement.gameObject.transform.position.z) - new Vector2(playerMovement.gameObject.transform.position.x, playerMovement.gameObject.transform.position.z));
+                u = new Vector2(mateMovement.gameObject.transform.forward.x, mateMovement.gameObject.transform.forward.z); // Direction for the x-axis
+                v = new Vector2(-mateMovement.gameObject.transform.right.x, -mateMovement.gameObject.transform.right.z); // Direction for the y-axis
             }
             else
             {
-                var cameraToCheck =
-                    playerCamNumber == 1 ? _cameraManager.PlayerCam1 : _cameraManager.PlayerCam2;
-                UpdatePositionFromCameraSplit(cameraToCheck);
-
-                // the point is not visible if the player is behind the camera
-                _rectTransform.gameObject.SetActive(
-                    math.dot(
-                        cameraToCheck.transform.forward,
-                        _playerToFollow.transform.position - cameraToCheck.transform.position
-                    ) > 0f
-                );
+                transform.localScale = _normalScale;
+                _direction = (new Vector2(playerMovement.gameObject.transform.position.x, playerMovement.gameObject.transform.position.z) - new Vector2(mateMovement.gameObject.transform.position.x, mateMovement.gameObject.transform.position.z));
+                u = new Vector2(playerMovement.gameObject.transform.forward.x, playerMovement.gameObject.transform.forward.z); // Direction for the x-axis
+                v = new Vector2(-playerMovement.gameObject.transform.right.x, -playerMovement.gameObject.transform.right.z); // Direction for the y-axis
             }
-        }
 
-        private void UpdatePositionFromCameraSingle(Camera cam)
-        {
-            if (!cam)
-                return;
-            Vector2 playerScreenPosition = cam.WorldToScreenPoint(_playerToFollow.position);
-
-            var xPosition = math.clamp(
-                playerScreenPosition.x - cam.pixelWidth / 2f + offset.x,
-                -cam.pixelWidth / 2f,
-                cam.pixelWidth / 2f
+            // Create the transformation matrix
+            Matrix4x4 transformationMatrix = new Matrix4x4(
+                new Vector4(u.x, v.x, 0, 0), // First column
+                new Vector4(u.y, v.y, 0, 0), // Second column
+                new Vector4(0, 0, 1, 0),      // Third column (for homogeneity)
+                new Vector4(0, 0, 0, 1)       // Fourth column (for homogeneity)
             );
-            var yPosition = math.clamp(
-                playerScreenPosition.y - cam.pixelHeight / 2f + offset.y,
-                -cam.pixelHeight / 2f,
-                cam.pixelHeight / 2f
-            );
-            _rectTransform.localPosition = new Vector2(xPosition, yPosition);
-        }
 
-        private void UpdatePositionFromCameraSplit(Camera cam)
-        {
-            if (!cam)
-                return;
-            Vector2 playerScreenPosition = cam.WorldToScreenPoint(_playerToFollow.position);
+            // Convert Vector2 to Vector3
+            Vector3 vector3 = new Vector3(_direction.x, _direction.y, 1);
 
-            var camRect = cam.rect;
+            // Apply the transformation
+            Vector3 transformedVector = transformationMatrix.MultiplyPoint3x4(vector3);
 
-            var isLeft = camRect.x <= 0.01f;
-            var sign = isLeft ? -1 : 0.5f;
+            // Convert back to Vector2 if needed
+            Vector2 result = new Vector2(transformedVector.x, transformedVector.y);
 
-            var xPosition = playerScreenPosition.x - cam.pixelWidth / 2f + offset.x;
-            var yPosition = playerScreenPosition.y - cam.pixelHeight / 2f + offset.y;
+            float angleInRadians = Mathf.Atan2(result.y, result.x);
 
-            if (!isLeft)
-                xPosition -= 3 * cam.pixelWidth / 4f;
+            // Convert the angle to degrees
+            float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
 
-            xPosition = isLeft
-                ? math.clamp(xPosition, -cam.pixelWidth / 2f, cam.pixelWidth / 2f)
-                : math.clamp(xPosition, -cam.pixelWidth / 4f, 3 * cam.pixelWidth / 4f);
+            angleInDegrees = Mathf.Clamp(angleInDegrees, -45, 45);
+            transform.rotation = Quaternion.Euler(new(0,0,angleInDegrees));
+            if (Mathf.Abs(_splineAdvancementDifference) < hideWaypointTreshold) waypointImage.enabled = false;
+            else waypointImage.enabled = true;
 
-            yPosition = math.clamp(yPosition, -cam.pixelHeight / 2f, cam.pixelHeight / 2f);
-            _rectTransform.localPosition =
-                new Vector2(xPosition, yPosition) + Vector2.right * (sign * cam.pixelWidth) / 2f;
         }
     }
 }
