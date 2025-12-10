@@ -54,14 +54,10 @@ MonoBehaviour:
   playerCam1: {fileID: 868159762848391336}
   playerCam2: {fileID: 7858041175562305114}
   splitVerticalImage: {fileID: 0}
-  singleListener: {fileID: 4701673212594569880}
   playerListener1: {fileID: 202739050519608227}
   playerListener2: {fileID: 8969119508014387891}
   splitDistance: 10
   listenerDistance: 10
-  cam1: {fileID: 0}
-  cam2: {fileID: 0}
-  singleCineCam: {fileID: 7306207766429298018}
 --- !u!1 &202739050519608227
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +354,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.84061944, g: 0.88792574, b: 0.9622642, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
