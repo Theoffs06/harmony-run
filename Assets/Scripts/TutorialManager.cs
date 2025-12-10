@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour {
         var op = SceneManager.LoadSceneAsync("Circuit1_Art", LoadSceneMode.Additive);
         
         while (op is { isDone: false }) yield return null;
+        AudioManager.Instance.PlayUISound();
         SceneManager.UnloadSceneAsync("Tuto");
         SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
     }
