@@ -24,27 +24,19 @@ public class AudioManager : MonoBehaviour {
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        InitPersistentEvents();
-        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
     }
-
-    // Lance les événements FMOD persistants
-    private void InitPersistentEvents() {
-        // Musique
+    
+    private void Start() {
         _musicInstance = RuntimeManager.CreateInstance(musicEvent);
         _musicInstance.start();
-
-        // Ambiance
+        
         _ambienceInstance = RuntimeManager.CreateInstance(ambienceEvent);
         _ambienceInstance.start();
-
-        // Sons UI
-        _uiInstance = RuntimeManager.CreateInstance(uiEvent);
+        
+        RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 1f);
     }
-
+    
     public void PlayUISound() {
-        _uiInstance.start();
+        RuntimeManager.PlayOneShot(uiEvent);
     }
 }
-

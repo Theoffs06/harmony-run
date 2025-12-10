@@ -1,3 +1,4 @@
+using System.Collections;
 using FMODUnity;
 using TMPro;
 using UnityEngine;
@@ -26,9 +27,17 @@ namespace UI {
             _nextAction.performed -= PressRestart;
         }
 
-        private static void PressRestart(InputAction.CallbackContext obj) {
+        private void PressRestart(InputAction.CallbackContext obj) {
             RuntimeManager.StudioSystem.setParameterByName("MenuFactor", 0f);
-            SceneManager.LoadScene("Game");
+            StartCoroutine(LoadGameAfterAdditive());
+        }
+        
+        private static IEnumerator LoadGameAfterAdditive() {
+            var op = SceneManager.LoadSceneAsync("Circuit1_Art", LoadSceneMode.Additive);
+        
+            while (op is { isDone: false }) yield return null;
+            SceneManager.UnloadSceneAsync("Leaderboard");
+            SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
         }
     }
 }
