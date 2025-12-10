@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Effect_Density: 0
+    - _Effect_Density: 0.7999999
     - _Line_Count: 50
     - _Line_Fallof: 0.45
     - _Mask_Vignet_Flow: 0.89

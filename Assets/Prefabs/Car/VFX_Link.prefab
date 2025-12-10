@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5522404778049257672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 1.204, z: -1.79}
+  m_LocalPosition: {x: -1.742, y: 0.111, z: -0.993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53,7 +53,22 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: -0.91
+        m_Name: Alpha
+        m_Overridden: 1
+      - m_Value: 24.95
+        m_Name: Alpha_Fallof
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: Thickness
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: NoiseSpeed
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: NoisePower
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -70,14 +85,20 @@ VisualEffect:
       - m_Value: {x: -0.02, y: -1.47, z: 0.89}
         m_Name: Pos2
         m_Overridden: 1
-      - m_Value: {x: 2.92, y: 0, z: 0}
+      - m_Value: {x: -18.13, y: 0, z: -1.36}
         m_Name: Player01
         m_Overridden: 1
-      - m_Value: {x: -3.44, y: 1.77, z: 1.24}
+      - m_Value: {x: -40.9, y: 1.42, z: 1.47}
         m_Name: Player02
         m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.66736907, y: 2.6208298, z: 3.3056602, w: 0}
+        m_Name: Base_Color
+        m_Overridden: 1
+      - m_Value: {x: 8, y: 0, z: 0, w: 0}
+        m_Name: NearBreak_Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
