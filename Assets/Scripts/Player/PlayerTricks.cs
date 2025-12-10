@@ -48,12 +48,12 @@ namespace Player
         {
             _animator.Play("Kickflip");
             _audio.OnFigureTry();
-
-            _trickCounter++;
         }
 
         public void SucceedTrick()
         {
+            _trickCounter++;
+
             var trick = _syncActions.SucceedTricks(gameObject.name == "Player 1" ? 0 : 1);
 
             //_uiScore.IncreaseScore(trick.Item1);
