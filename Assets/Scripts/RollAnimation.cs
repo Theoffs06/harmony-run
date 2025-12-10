@@ -1,4 +1,5 @@
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,23 @@ public class RollAnimation : MonoBehaviour
     private PlayerSyncActions playerSyncActions;
 
     [SerializeField]
+    private PlayerTricks playerTricks;
+
+    [SerializeField]
+    private TextMeshProUGUI multiplierText;
+
+    [SerializeField]
+    private int fontSizeIncreaseOverTricksCount = 3;
+
+    private float multiplierTextDefaultSize;
+
+    [SerializeField]
     private void Start()
     {
         playerSyncActions.OnPlayerSucceededTricks.AddListener(RollAnimationOnSucces);
         Hide();
         rollUIAnimation["RollUI"].layer = 0;
+        multiplierTextDefaultSize = multiplierText.fontSize;
     }
 
     void RollAnimationOnSucces(int playerNumberTricking)
@@ -36,17 +49,35 @@ public class RollAnimation : MonoBehaviour
 
         Display();
 
+        UpdateMultiplierText(playerTricks.GetTrickCounter());
+
         rollUIAnimation.Play(PlayMode.StopAll);
+    }
+
+    void UpdateMultiplierText(int tricksCount)
+    {
+        if (tricksCount <= 1)
+        {
+            multiplierText.enabled = false;
+            multiplierText.text = "";
+            return;
+        }
+
+        multiplierText.text = ">< " + tricksCount.ToString();
+        multiplierText.fontSize =
+            multiplierTextDefaultSize + fontSizeIncreaseOverTricksCount * tricksCount;
     }
 
     public void Display()
     {
         image.enabled = true;
+        multiplierText.enabled = true;
     }
 
     public void Hide()
     {
         image.enabled = false;
+        multiplierText.enabled = false;
     }
 
     // Update is called once per frame
