@@ -12,6 +12,7 @@ namespace Player {
         [SerializeField] private EventReference figureTryEvent;
         [SerializeField] private EventReference figureSuccessEvent;
         [SerializeField] private EventReference figureSuccessTeamEvent;
+
         [SerializeField] private EventReference figureFailEvent;
         [SerializeField] private EventReference ringCrossedEvent;
         [SerializeField] private EventReference ringCrossedTeamEvent;
@@ -20,6 +21,9 @@ namespace Player {
         private EventInstance _motorInstance;
         private EventInstance _windInstance;
 
+        private EventInstance _figureSuccessInstance;
+
+
         public void OnCreate(Rigidbody rb) {
             if (muteSound) return;
             _motorInstance = RuntimeManager.CreateInstance(motorEvent);
@@ -27,6 +31,10 @@ namespace Player {
 
             _windInstance = RuntimeManager.CreateInstance(windEvent);
             RuntimeManager.AttachInstanceToGameObject(_windInstance, gameObject, rb);
+
+            _figureSuccessInstance =  RuntimeManager.CreateInstance(figureSuccessEvent);
+            RuntimeManager.AttachInstanceToGameObject(_figureSuccessInstance, gameObject, rb);
+
         }
 
         public void OnStart() {
@@ -50,19 +58,21 @@ namespace Player {
             RuntimeManager.PlayOneShotAttached(boostEndEvent, gameObject);
         }
 
-        public void OnFigureTry() {
+        public void OnFigureTry(int Combo = 0) {
             if (muteSound) return;
             RuntimeManager.PlayOneShotAttached(figureTryEvent, gameObject);
         }
+
 
         public void OnFigureFail() {
             if (muteSound) return;
             RuntimeManager.PlayOneShotAttached(figureFailEvent, gameObject);
         }
 
-        public void OnFigureSuccess(bool isTeam) {
+        public void OnFigureSuccess(int Combo) {
             if (muteSound) return;
-            RuntimeManager.PlayOneShotAttached(isTeam ? figureSuccessTeamEvent : figureSuccessEvent, gameObject);
+            _figureSuccessInstance.setParameterByName("Combo", Combo);
+            _figureSuccessInstance.start();
         }
 
         public void OnRingCrossed(bool isTeam) {

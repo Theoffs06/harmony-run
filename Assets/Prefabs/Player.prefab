@@ -628,6 +628,7 @@ MonoBehaviour:
   boostSpeedMultiplier: 1.4
   proximityBoostMultiplier: 1
   brakeStrength: 50
+  splineAdvancement: 0
 --- !u!114 &4015718791812035246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +697,27 @@ MonoBehaviour:
       Data3: -1203134080
       Data4: 31418291
     Path: event:/Action/Figure/Figure_Success_Team
+  figureOkayEvent:
+    Guid:
+      Data1: -309097390
+      Data2: 1218287226
+      Data3: -2084782182
+      Data4: 348835346
+    Path: event:/Action/Figure/New_fig_sucess/Figure_Okay
+  figureGoodEvent:
+    Guid:
+      Data1: 623717144
+      Data2: 1313689935
+      Data3: -225781347
+      Data4: 1540207614
+    Path: event:/Action/Figure/New_fig_sucess/Figure_Good
+  figurePerfectEvent:
+    Guid:
+      Data1: -438540489
+      Data2: 1131178399
+      Data3: 1512470198
+      Data4: 2133125497
+    Path: event:/Action/Figure/New_fig_sucess/Figure_Perfect
   figureFailEvent:
     Guid:
       Data1: -1652235395

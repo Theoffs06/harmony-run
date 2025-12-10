@@ -2,6 +2,8 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
+using FMOD.Studio;
+using FMODUnity;
 
 namespace Player
 {
@@ -32,6 +34,11 @@ namespace Player
         private int _timingLevel;
 
         public int GetTimingLevel() => _timingLevel;
+
+        [Header("Audio References")]
+        [SerializeField] private EventReference figureOkayEvent;
+        [SerializeField] private EventReference figureGoodEvent;
+        [SerializeField] private EventReference figurePerfectEvent;
 
         public Tuple<int, bool> SucceedTricks(int player)
         {
@@ -70,7 +77,12 @@ namespace Player
                 );
 
                 _timingLevel = TimingLevelFromTimingDifference(4, tricksTimingDifference);
+                if (_timingLevel >= 3) RuntimeManager.PlayOneShotAttached(figurePerfectEvent, gameObject);
+                else if (_timingLevel == 2) RuntimeManager.PlayOneShotAttached(figureGoodEvent, gameObject);
+                else RuntimeManager.PlayOneShotAttached(figureOkayEvent, gameObject);
+
                 OnPlayerSucceededTricksDuo.Invoke();
+
             }
 
             return new Tuple<int, bool>(points, true);
