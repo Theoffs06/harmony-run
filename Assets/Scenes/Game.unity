@@ -667,6 +667,14 @@ PrefabInstance:
       propertyPath: startBoost
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5613545818744557244, guid: eccaab5c0600be74ca319a5691f89d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -949
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547404205204272020, guid: eccaab5c0600be74ca319a5691f89d97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -920
+      objectReference: {fileID: 0}
     - target: {fileID: 7162214340646230402, guid: eccaab5c0600be74ca319a5691f89d97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4386,7 +4394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4319836547718107834, guid: 967b219cd6b36b74fb56525f7dceb463, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 805
       objectReference: {fileID: 0}
     - target: {fileID: 4319836547718107834, guid: 967b219cd6b36b74fb56525f7dceb463, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4769,7 +4777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6356648502266441883, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: maxTimingMultiplierTrigger
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6356648502266441883, guid: 7d3fb53feb6022a4b8d46e080c4342e1, type: 3}
       propertyPath: tricksTimingScoreMultiplier
