@@ -27,6 +27,9 @@ public class RollAnimation : MonoBehaviour
     [SerializeField]
     private int fontSizeIncreaseOverTricksCount = 3;
 
+    [SerializeField]
+    private int maxFontSize = 110;
+
     private float multiplierTextDefaultSize;
 
     [SerializeField]

@@ -6,17 +6,14 @@ using UnityEngine.UI;
 public class UIAnimation : MonoBehaviour
 {
     [SerializeField]
-    private Image image;
+    protected Image image;
 
     [SerializeField]
     private string animationName = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField]
-    private Animation animation;
-
-    [SerializeField]
-    private Animation timingAnimation;
+    private Animation animationUI;
 
     [SerializeField]
     private void Start()
@@ -26,17 +23,9 @@ public class UIAnimation : MonoBehaviour
 
     public void PlayAnimation()
     {
-        Debug.Log("play animation");
-        // animation[animationName].time = 0;
-
         Display();
 
-        animation.Play();
-    }
-
-    public void PlayTimingAnimation()
-    {
-        timingAnimation.Play();
+        animationUI.Play();
     }
 
     public void Display()
