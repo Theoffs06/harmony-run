@@ -16,6 +16,9 @@ public class UIAnimation : MonoBehaviour
     private Animation animation;
 
     [SerializeField]
+    private Animation timingAnimation;
+
+    [SerializeField]
     private void Start()
     {
         Hide();
@@ -29,6 +32,11 @@ public class UIAnimation : MonoBehaviour
         Display();
 
         animation.Play();
+    }
+
+    public void PlayTimingAnimation()
+    {
+        timingAnimation.Play();
     }
 
     public void Display()

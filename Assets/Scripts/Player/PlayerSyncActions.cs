@@ -28,7 +28,13 @@ namespace Player
         private bool _player1MadeATrick;
         private bool _player2MadeATrick;
 
-        public Tuple<int, bool> SucceedTricks(int player) {
+        [SerializeField]
+        private int _timingLevel;
+
+        public int GetTimingLevel() => _timingLevel;
+
+        public Tuple<int, bool> SucceedTricks(int player)
+        {
             var points = baseTrickScore;
 
             OnPlayerSucceededTricks.Invoke(player);
@@ -44,18 +50,36 @@ namespace Player
                 _player2MadeATrick = true;
             }
 
-            if (!_player1MadeATrick || !_player2MadeATrick) return new Tuple<int, bool>(points, false);
+            if (!_player1MadeATrick || !_player2MadeATrick)
+                return new Tuple<int, bool>(points, false);
             var tricksTimingDifference = math.abs(_player1LastTrickTime - _player2LastTrickTime);
 
             _player1MadeATrick = false;
             _player2MadeATrick = false;
-            
-            if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger) {
-                points = (int) (points * (1 + tricksTimingScoreMultiplier * (maxTimingMultiplierTrigger - tricksTimingDifference)/maxTimingMultiplierTrigger));
+
+            if (tricksTimingDifference > 0 && tricksTimingDifference <= maxTimingMultiplierTrigger)
+            {
+                points = (int)(
+                    points
+                    * (
+                        1
+                        + tricksTimingScoreMultiplier
+                            * (maxTimingMultiplierTrigger - tricksTimingDifference)
+                            / maxTimingMultiplierTrigger
+                    )
+                );
+
+                _timingLevel = TimingLevelFromTimingDifference(4, tricksTimingDifference);
+                OnPlayerSucceededTricksDuo.Invoke();
             }
-            OnPlayerSucceededTricksDuo.Invoke();
 
             return new Tuple<int, bool>(points, true);
+        }
+
+        private int TimingLevelFromTimingDifference(int numberOfLevel, float timingDifference)
+        {
+            return numberOfLevel
+                - (int)Mathf.Floor(timingDifference / maxTimingMultiplierTrigger * numberOfLevel);
         }
     }
 }
